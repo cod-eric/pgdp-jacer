@@ -111,11 +111,12 @@ erzeugt also `Hi` auf der Konsole.
 Das Template für diese Aufgabe sieht wie folgt aus:
 *(✒️ bedeutet, dass du in dieser Methode etwas ändern/ergänzen musst.)*
 
-- ✒️ `runBrainfuckSequence(int[] tape, String code, boolean printAsChars)` ist die Hauptmethode - hier iterierst du über die Zeichen des Codes und führst die Befehle auf deinem Band aus.
+- ✒️ `runBrainfuckSequence(int[] tape, String code, boolean printAsChars, boolean showSteps)` ist die Hauptmethode - hier iterierst du über die Zeichen des Codes und führst die Befehle auf deinem Band aus.
 
     - `tape` ist das Datenband in Form eines `int`-Arrays. Beachte, dass dieses zu Beginn beliebig lang sein und auch bereits Daten beinhalten kann.
     - `code` ist der Brainfuck-Code.
     - `printAsChars` gibt an, ob die Ausgaben bei einem `.` in `code` als `int`s oder `char`s dargestellt werden sollen (macht das Debugging leichter).
+    - `showSteps` gibt an, ob der aktuelle Ausführungszustand nach jedem ausgeführten Befehl ausgegeben werden soll (siehe Aufgabe Pretty Print weiter unten).
 
 - ✒️ `addPlaceToTape(int[] oldTape, boolean inFront)` verlängert das Band bei Bedarf, indem am linken oder rechten Ende Zellen ergänzt werden. Diese Methode kannst du in `runBrainfuckSequence` nutzen.
 

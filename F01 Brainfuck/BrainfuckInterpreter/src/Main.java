@@ -6,23 +6,27 @@ public class Main {
     public static void main(String[] args) {
         // the initial tape - feel free to modify
         int[] tape = new int[0];
+        boolean printAsChars = true;
+        boolean showSteps = true;      // enable to see all steps executed
 
         // the brainfuck code to execute - feel free to modify
+        // the template given produces Hello world!
         String brainfuckCode = ">+++++++++[<++++++++>-]<.>+++++++[<++++>-]<+.+++++++..+++."
                 + "[-]>++++++++[<++++>-] <.>+++++++++++[<++++++++>-]<-.--------.+++.------."
                 + "--------.[-]>++++++++[<++++>- ]<+.[-]++++++++++.";
 
-        runBrainfuckSequence(tape, brainfuckCode, true);
+        runBrainfuckSequence(tape, brainfuckCode, printAsChars, showSteps);
     }
 
     /**
      * Executes given Brainfuck code on a given tape.
      *
-     * @param tape          the tape to start with
-     * @param code          the Brainfuck code to execute
-     * @param printAsChars  whether console prints should give cell values as ints (false) or chars (true)
+     * @param tape         the tape to start with
+     * @param code         the Brainfuck code to execute
+     * @param printAsChars whether console prints should give cell values as ints (false) or chars (true)
+     * @param showSteps    whether to print the current execution state after each command
      */
-    public static void runBrainfuckSequence(int[] tape, String code, boolean printAsChars) {
+    public static void runBrainfuckSequence(int[] tape, String code, boolean printAsChars, boolean showSteps) {
         //TODO
     }
 

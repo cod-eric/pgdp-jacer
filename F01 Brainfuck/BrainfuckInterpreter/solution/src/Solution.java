@@ -24,6 +24,7 @@ public class Solution {
      * @param tape         the tape to start with
      * @param code         the Brainfuck code to execute
      * @param printAsChars whether console prints should give cell values as ints (false) or chars (true)
+     * @param showSteps    whether to print the current execution state after each command
      */
     public static void runBrainfuckSequence(int[] tape, String code, boolean printAsChars, boolean showSteps) {
         code = code.replace(" ", "");   // get rid of all spaces
