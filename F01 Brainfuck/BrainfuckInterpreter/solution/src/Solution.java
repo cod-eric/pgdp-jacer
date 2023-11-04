@@ -6,6 +6,7 @@ public class Solution {
     public static void main(String[] args) {
         // the initial tape - feel free to modify
         int[] tape = new int[0];
+        boolean printAsChars = true;
         boolean showSteps = false;      // enable to see all steps executed
 
         // the brainfuck code to execute - feel free to modify
@@ -14,7 +15,7 @@ public class Solution {
                 + "[-]>++++++++[<++++>-] <.>+++++++++++[<++++++++>-]<-.--------.+++.------."
                 + "--------.[-]>++++++++[<++++>- ]<+.[-]++++++++++.";
 
-        runBrainfuckSequence(tape, brainfuckCode, true, showSteps);
+        runBrainfuckSequence(tape, brainfuckCode, printAsChars, showSteps);
     }
 
     /**
