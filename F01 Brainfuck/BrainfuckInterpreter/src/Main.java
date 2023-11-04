@@ -39,6 +39,18 @@ public class Main {
     }
 
     /**
+     *  Method to pretty-print the tape state.
+     *
+     * @param tape          the tape
+     * @param code          the brainfuck code
+     * @param posInCode     current position in code
+     * @param posInTape     current position on tape
+     */
+    private static void prettyPrintCode(int[] tape, String code, int posInCode, int posInTape) {
+        //TODO
+    }
+
+    /**
      * Reads the next char from the console.
      *
      * @return read char

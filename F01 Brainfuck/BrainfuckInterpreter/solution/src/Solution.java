@@ -7,7 +7,7 @@ public class Solution {
         // the initial tape - feel free to modify
         int[] tape = new int[0];
         boolean printAsChars = true;
-        boolean showSteps = false;      // enable to see all steps executed
+        boolean showSteps = true;      // enable to see all steps executed
 
         // the brainfuck code to execute - feel free to modify
         // the template given produces Hello world!
@@ -128,18 +128,29 @@ public class Solution {
         return newTape;
     }
 
+    /**
+     *  Method to pretty-print the tape state.
+     *
+     * @param tape          the tape
+     * @param code          the brainfuck code
+     * @param posInCode     current position in code
+     * @param posInTape     current position on tape
+     */
     private static void prettyPrintCode(int[] tape, String code, int posInCode, int posInTape) {
-        String spacesBeforePointerSymbol = "\t\t\t       ";   // starting spaces to offset "tape: ["
+        String spacesBeforePointerSymbol = "\t\t\t       ";     // starting spaces to offset "tape: ["
 
         for (int i = 0; i < posInTape; i++) {
-            spacesBeforePointerSymbol += "   ";         // three spaces for "i, "
+            spacesBeforePointerSymbol += "   ";                 // three spaces for "i, "
             if(tape[i] >= 10){
                 spacesBeforePointerSymbol += " ";
             }
         }
 
         System.out.print("Step " + posInCode);
-        System.out.print(":\ttape: " + Arrays.toString(tape));
+        System.out.print(posInCode < 10 ? ":\t\t" : ":\t");     // ensures that state-prints with one-digit code
+                                                                // positions have the same indentation as
+                                                                // two-or-more-digit ones
+        System.out.print("tape: " + Arrays.toString(tape));
         System.out.println(",\tinstruction: " + code.charAt(posInCode));
         System.out.println(spacesBeforePointerSymbol + "^");
     }

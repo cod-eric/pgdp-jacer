@@ -125,6 +125,16 @@ Das Template für diese Aufgabe sieht wie folgt aus:
     - `inFront` gibt an, ob die zusätzliche Zelle links (front) oder rechts (back bzw. `!inFront`) angefügt werden soll.
     - Rückgabe: das vergrößerte Array
 
+- ✒️ `prettyPrintCode(int[] tape, String code, int posInCode, int posInTape)` gibt den aktuellen Zustand der Turingmaschine in einem leserlichen (und leicht debug-baren) Format aus.
+
+    - `tape` ist das aktuelle Band.
+
+    - `code` ist der Brainfuck-Code.
+
+    - `posInCode` ist die aktuelle Position im Code.
+
+    - `posInTape` ist die aktuelle Position des Kopfs auf dem Band.
+
 - `readCharFromConsole()` ließt das nächste Zeichen von der Konsole und gibt dieses zurück. Diese Methode kannst du in `runBrainfuckSequence` nutzen.
 
     - Rückgabe: das gelesene Zeichen
@@ -148,13 +158,17 @@ Der einfacheren Lesbarkeit halber sollen Leerzeichen im `code` erlaubt sein - f�
 Nach jedem Befehl aus `code` soll das aktuelle Band und die Zeigerposition wie folgt ausgegeben werden:
 
 ````
-tape: [0, 0, 3, -5, 0], instruction: +, position in code: 5
-             ^
+Step 165:	tape: [1, 0],	instruction: +
+			       ^
 ````
 
-Überlege dabei, wie du dir die aktuelle Position im Code und im Array zunutze machen kannst, den Zeiger an der richtigen Stelle auszugeben.
+Implementiere dafür die Methode `prettyPrintCode()`.
+
+Überlege dabei, wie du dir die aktuelle Position im Code (welche hinter “Step” steht) und im Array zunutze machen kannst, den Zeiger (`^`) an der richtigen Stelle auszugeben.
 
 *Tipp: Um das Array leicht ausgeben zu können, bietet sich möglicherweise ein Blick in die [Arrays-Library](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html) an.*
+
+*Tipp: Um die Abstände zwischen den einzelnen Komponenten trotz verschieden großer Zahlen hinter “Step” gleich zu behalten, kannst du Tabs printen - das Zeichen dafür ist `\t`.*
 
 ### 4. Befehle lesen & verarbeiten
 
@@ -163,7 +177,7 @@ Iteriere nun über die Befehle in `code` und implementiere eine Fallunterscheidu
 ### 5. Loops
 
 - Wie kannst du (ohne Rekursion! - nicht auf dumme Gedanken kommen) sicherstellen, beim Überspringen des Schleifencodes im Falle von `currentCell == 0`, an der richtigen Endklammer `]` rauszukommen?
-- Wie läufst du bei einem `]` an die richtige Startklammer `[` zurück? Achte darauf, bei der Abarbeitung des nächsten Zeichens keines zu überspringen!
+- Wie läufst du bei einem `]` an die richtige zugehörige Startklammer `[` zurück? Achte darauf, bei der Abarbeitung des nächsten Zeichens keines zu überspringen!
 
 Beachte, dass beim Überspringen bzw. Zurücklaufen **keine** Befehle ausgeführt werden sollen!
 
@@ -191,7 +205,11 @@ Für diese Aufgabe gibt es keine automatisierten Tests. Du kannst allerdings mit
 
     erwartetes Ergebnis: Konsole: `Hi`, Tape: `[0, 72, 105]`
 
-4. Code: `> + + + + + + + + + [ < + + + + + + + + > - ] < . > + + + + + + + [ < + + + + > - ] < + . + + + + + + + . . + + + . - ] > + + + + + + + + [ < + + + + > - ] < . > + + + + + + + + + + + [ < + + + + + + + + > - ] < - . - - - - - - - - . + + + . - - - - - - . - - - - - - - - . [ - ] > + + + + + + + + [ < + + + + > -   ] < + . [ - ] + + + + + + + + + + .`, Tape: `{}`
+4. Code: `+ + [ > + + [ > + + + < - ] < - ]`, Tape: `{}`
+
+    erwartetes Ergebnis: Tape: `[0, 0, 12]`
+
+5. Code: `> + + + + + + + + + [ < + + + + + + + + > - ] < . > + + + + + + + [ < + + + + > - ] < + . + + + + + + + . . + + + . - ] > + + + + + + + + [ < + + + + > - ] < . > + + + + + + + + + + + [ < + + + + + + + + > - ] < - . - - - - - - - - . + + + . - - - - - - . - - - - - - - - . [ - ] > + + + + + + + + [ < + + + + > -   ] < + . [ - ] + + + + + + + + + + .`, Tape: `{}`
 
     erwartetes Ergebnis: Konsole: `Hello world!`, Tape: `[10, 0]`
 
