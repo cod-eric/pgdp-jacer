@@ -4,11 +4,10 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        // the starting tape - feel free to modify
+        // the initial tape - feel free to modify
         int[] tape = new int[0];
 
         // the brainfuck code to execute - feel free to modify
-        // the template given produces Hello world!
         String brainfuckCode = ">+++++++++[<++++++++>-]<.>+++++++[<++++>-]<+.+++++++..+++."
                 + "[-]>++++++++[<++++>-] <.>+++++++++++[<++++++++>-]<-.--------.+++.------."
                 + "--------.[-]>++++++++[<++++>- ]<+.[-]++++++++++.";

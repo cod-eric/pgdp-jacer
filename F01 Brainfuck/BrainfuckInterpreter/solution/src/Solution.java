@@ -4,8 +4,10 @@ import java.util.Scanner;
 public class Solution {
 
     public static void main(String[] args) {
-        // the starting tape - feel free to modify
+        // the initial tape - feel free to modify
         int[] tape = new int[0];
+        boolean printAsChars = true;
+        boolean showSteps = false;      // enable to see all steps executed
 
         // the brainfuck code to execute - feel free to modify
         // the template given produces Hello world!
@@ -13,7 +15,7 @@ public class Solution {
                 + "[-]>++++++++[<++++>-] <.>+++++++++++[<++++++++>-]<-.--------.+++.------."
                 + "--------.[-]>++++++++[<++++>- ]<+.[-]++++++++++.";
 
-        runBrainfuckSequence(tape, brainfuckCode, true);
+        runBrainfuckSequence(tape, brainfuckCode, printAsChars, showSteps);
     }
 
     /**
@@ -23,48 +25,52 @@ public class Solution {
      * @param code         the Brainfuck code to execute
      * @param printAsChars whether console prints should give cell values as ints (false) or chars (true)
      */
-    public static void runBrainfuckSequence(int[] tape, String code, boolean printAsChars) {
+    public static void runBrainfuckSequence(int[] tape, String code, boolean printAsChars, boolean showSteps) {
         code = code.replace(" ", "");   // get rid of all spaces
-        int positionInTape = 0;
 
-        // in case the given tape has no elements, one cell is added (such that the head points to something at all times)
-        if (tape.length == 0) {
+        if (tape == null) {           // initialize the tape if it is null
+            tape = new int[0];
+        }
+
+        if (tape.length == 0) {     // if the given tape has no elements, add one cell
             tape = addPlaceToTape(tape, false);
         }
 
-        for (int posInCode = 0; posInCode < code.length(); posInCode++) {
+        int posInTape = 0;
+
+        for (int posInCode = 0; posInCode < code.length(); posInCode++) {   // process all brainfuck commands
             switch (code.charAt(posInCode)) {
                 case '<' -> {
-                    if (positionInTape == 0) {
+                    if (posInTape == 0) {
                         tape = addPlaceToTape(tape, true);
                     } else {
-                        positionInTape--;
+                        posInTape--;
                     }
                 }
                 case '>' -> {
-                    if (positionInTape == tape.length - 1) {
+                    if (posInTape == tape.length - 1) {
                         tape = addPlaceToTape(tape, false);
                     }
-                    positionInTape++;
+                    posInTape++;
                 }
-                case '+' -> tape[positionInTape]++;
-                case '-' -> tape[positionInTape]--;
+                case '+' -> tape[posInTape]++;
+                case '-' -> tape[posInTape]--;
                 case '.' -> {
                     if (printAsChars) {
-                        System.out.print((char) tape[positionInTape]);
+                        System.out.print((char) tape[posInTape]);
                     } else {
-                        System.out.print(tape[positionInTape]);
+                        System.out.print(tape[posInTape]);
                     }
                 }
-                case ',' -> tape[positionInTape] = readCharFromConsole();
+                case ',' -> tape[posInTape] = readCharFromConsole();
                 case '[' -> {
-                    if (tape[positionInTape] == 0) {
+                    if (tape[posInTape] == 0) {
                         int bracketCount = 1;   // closing bracket: -1, opening bracket: +1
                         // start with 1 for first opening bracket
                         while (bracketCount != 0) {
                             posInCode++;
                             if (posInCode >= code.length()) {
-                                System.out.println("invalid brainfuck code, more opening than closing brackets");
+                                System.out.println("Invalid brainfuck code, more opening than closing brackets");
                                 return;
                             } else if (code.charAt(posInCode) == '[') {
                                 bracketCount++;
@@ -78,10 +84,9 @@ public class Solution {
                     int bracketCount = -1;  // closing bracket: -1, opening bracket: +1
                     // start with -1 for first closing bracket
                     while (bracketCount != 0) {
-                        char charInCode = code.charAt(posInCode);
                         posInCode--;
                         if (posInCode < 0) {
-                            System.out.println("invalid brainfuck code, more closing than opening brackets");
+                            System.out.println("Invalid brainfuck code, more closing than opening brackets");
                             return;
                         } else if (code.charAt(posInCode) == '[') {
                             bracketCount++;
@@ -92,27 +97,16 @@ public class Solution {
                     posInCode--;
                 }
                 default -> {
-                    System.out.println(
-                            "invalid brainfuck code. symbol '"
-                                    + code.charAt(posInCode)
-                                    + "' is not valid."
-                    );
+                    System.out.println("Invalid brainfuck code. Symbol '" + code.charAt(posInCode) + "' is not valid.");
                     return;
                 }
             }
-            //pretty print code vvv
-            System.out.println(
-                    "tape: " + Arrays.toString(tape)
-                            + ", instruction: " + code.charAt(posInCode)
-                            + ", position in code: " + posInCode
-            );
-            String spacesBeforePointerSymbol = "       ";   // starting spaces to offset "tape: ["
-            for (int i = 0; i < positionInTape; i++) {
-                spacesBeforePointerSymbol += "   ";         // three spaces for "i, "
+
+            if(showSteps) {
+                prettyPrintCode(tape, code, posInCode, posInTape);
             }
-            System.out.println(spacesBeforePointerSymbol + "^");
+
         }
-        System.out.println();
     }
 
     /**
@@ -123,14 +117,31 @@ public class Solution {
      * @return the new array
      */
     private static int[] addPlaceToTape(int[] oldTape, boolean inFront) {
-        int[] newTape = new int[oldTape.length + 1];
         // if the cell is added to the left, the elements of the old array are simply moved one to the right
         // this is also the reason why positionInTape is not decreased in case the array is expanded to the left
+        int[] newTape = new int[oldTape.length + 1];
         int offset = inFront ? 1 : 0;
+
         for (int i = 0; i < oldTape.length; i++) {
             newTape[i + offset] = oldTape[i];
         }
         return newTape;
+    }
+
+    private static void prettyPrintCode(int[] tape, String code, int posInCode, int posInTape) {
+        String spacesBeforePointerSymbol = "\t\t\t       ";   // starting spaces to offset "tape: ["
+
+        for (int i = 0; i < posInTape; i++) {
+            spacesBeforePointerSymbol += "   ";         // three spaces for "i, "
+            if(tape[i] >= 10){
+                spacesBeforePointerSymbol += " ";
+            }
+        }
+
+        System.out.print("Step " + posInCode);
+        System.out.print(":\ttape: " + Arrays.toString(tape));
+        System.out.println(",\tinstruction: " + code.charAt(posInCode));
+        System.out.println(spacesBeforePointerSymbol + "^");
     }
 
     /**
