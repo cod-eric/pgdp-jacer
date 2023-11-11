@@ -14,95 +14,29 @@ In dieser Aufgabe lernt ihr einige andere Programmiersprachen neben Java kennen 
 
 ## 📜 Backstory
 
-Die älteren Pinguine gönnen sich gelegentlich auch mal Urlaub - und als Programmierlehrer-Pinguin Paddy vor zwei Wochen einen Spontanausflug zum Amundsensee vorschlug, waren alle Pinguine ganz begeistert - und nach hektischem Kofferpacken 3 Tage später auch schon verreist. Leider haben Sie in all dem Stress euch Babypinguine dabei ganz vergessen.
-
-Nachdem ihr euch die ersten sturmfreien Tage mit Gartenparties vergnügt habt, setzen die Schneestürme nun wieder ein - bei der Kälte verlässt kein Pinguin freiwillig das Iglu! Und so widmet ihr euch wieder euren Programmieraufgaben. Jedoch wollt ihr Paddy auch eine kleine Lehre erteilen, damit er euch bei der nächsten Urlaubsplanung nicht nochmal vergisst.
-
-Im Internet stoßt ihr dabei über eine Programmiersprache namens Brainfuck - das klingt doch ideal, um das ausgeruhte Paddy-Gehirn schnell wieder auf Trab zu bekommen!
+Zur vorweihnachtlichen Tradition der Pinguine gehört seit eh und je der alljährliche Besuch im "Museum für Alles" in Cod-City. Heute, am 02. Adventssonntag, ist es wieder soweit - nach dem gemeinsamen Mittagessen, für welches Pingu-Opa Max seinen berühmten [Lachs mit Spekulatiuskruste](https://www.essen-und-trinken.de/rezepte/59961-rzpt-lachsfilet-mit-spekulatiuskruste) gekocht hat, ging es los ins Museum. In jeder Abteilung fallen den Babypinguinen neben all den antiken Statuen und Zeichnungen besonders die überlieferten Schriftstücke auf, welche in Vitrinen an der Wand hängen. Trotz deren Alter von teils mehreren Jahrhunderten ist die Schrift darauf noch gut erhalten - nur schade, dass die Pinguine die Schriftzeichen nicht entziffern können… Kannst du ihnen helfen?
 
 
 
 ## 📝 Aufgabenbeschreibung
 
-Ziel dieser Aufgabe ist es, einen Interpreter für die [esoterische Programmiersprache](https://de.wikipedia.org/wiki/Esoterische_Programmiersprache) [*Brainfuck*](https://de.wikipedia.org/wiki/Brainfuck) in Java zu entwickeln.
-
-Brainfuck ist eine (konzeptionell) sehr einfache Programmiersprache, ähnlich einer [Turingmaschine](https://de.wikipedia.org/wiki/Turingmaschine). Eine solche kann man sich als (unendlich) langes Band vorstellen, welches in einzelne Zellen unterteilt ist. Jede Zelle speichert dabei einen (theoretisch unendlich kleinen bzw. großen) Ganzzahlwert. Modifiziert werden diese Zellen durch einen Schreibkopf, welcher auf dem Band nach links und rechts bewegt werden und die aktuelle Zelle jeweils um 1 erhöhen oder verringern kann.
-
-> Kleiner Funfact: Eine Turingmaschine (und damit auch Brainfuck) ist - wie der Name vermuten lässt - [turing-vollständig](https://de.wikipedia.org/wiki/Turing-Vollst%C3%A4ndigkeit). Das bedeutet, dass man jedes Programm einer Hochsprache (wie Java oder Python) auch als Instruktionsliste für eine Turingmaschine ausdrücken kann. Man könnte also auch ein ganzes Betriebssystem in Brainfuck schreiben - praktisch ist das selten, aber theoretisch möglich.
+Ziel dieser Aufgabe ist es, die Ähnlichkeit und Unterschiede zwischen verschiedenen Programmiersprachen zu sehen und Algorithmen in verschiedenen Sprachen umzusetzen.
 
 
 
-In Brainfuck gibt es folgende Befehle:
+### 🐍 Abteilung für Würgeschlangen - Python
 
-| Befehl | Bedeutung                                                    | Pseudocode-Äquivalent (vereinfacht) |
-| ------ | ------------------------------------------------------------ | ----------------------------------- |
-| `+`    | Inkrementiert die aktuelle Zelle um eins.                    | `cell++`                            |
-| `-`    | Dekrementiert die aktuelle Zelle um eins.                    | `cell--`                            |
-| `<`    | Bewegt den Schreibkopf eine Zelle nach links.                | `pos--`                             |
-| `>`    | Bewegt den Schreibkopf eine Zelle nach rechts.               | `pos++`                             |
-| `.`    | Gibt das zum Wert der aktuellen Zelle gehörige ASCII-Zeichen (siehe unten) auf der Konsole aus. | `print((char) cell)`                |
-| `,`    | Liest ein Zeichen vom Nutzer ein und ersetzt die aktuelle Zelle mit dessen Zahlwert. | `cell = readChar()`                 |
-| `[`    | Falls der Wert der aktuellen Zelle größer 0 ist, wird der dahinter folgende Code ausgeführt. Sonst wird zum ersten Zeichen hinter dem zugehörigen `]` gesprungen. | `while (cell > 0) {`                |
-| `]`    | Springt im Code zurück zum zugehörigen `[`.                  | `} endloop`                         |
+Neben den ganzen imposanten Terrarien hängt an der Wand hinter einer Glasscheibe folgendes Papyrus der alten Pharaouinen:
 
-
-
-**Beispiel I**:
-
-`+ + +` erzeugt folgendes Band (von welchem in den Beispielen jeweils nur die relevanten Abschnitte dargestellt werden):
+```py
 
 ```
-... 0  3  0 ...
-       ^
-```
-
-Die Position des Schreibkopfs wird dabei mit `^` dargestellt, die Leerzeichen im Code dienen nur der besseren Lesbarkeit.
 
 
 
-**Beispiel II**:
-
-`+ + [ > + + > - - - < < - ] >` erzeugt das Band:
-
-*vor Eintritt in die Schleife:*
-
-```
-... 0  2  0  0  0 ...
-       ^
-```
-
-*nach einer Iteration der Schleife:*
-
-```
-... 0  1  2 -3  0 ...
-       ^
-```
-
-*am Ende des Programms:*
-
-```
-... 0  0  4 -6  0 ...
-          ^
-```
 
 
-
-**Beispiel III**:
-
-```
-+++++ +++++             (Zelle #0) Wiederhole 10x
-[                       setze Startwerte 70 und 100 für die beiden Zellen rechts
-    > +++++ ++              addiere 7 auf Zelle #1
-    > +++++ +++++           addiere 10 auf Zelle #2
-	<< -                  	dekrementiere den Zähler (Zelle #0)
-]
-> ++ .                  addiere 2 auf Zelle #1 (72 = 'H'), gib Zeichen aus
-> +++++ .               addiere 5 auf Zelle #2 (105 = 'i'), gib Zeichen aus
-```
-
-erzeugt also `Hi` auf der Konsole.
-
-
+— # TODO below this line —
 
 ## 🧱 Template
 
@@ -216,9 +150,9 @@ Für diese Aufgabe gibt es keine automatisierten Tests. Du kannst allerdings mit
 
 ## 🗃️ Anhang
 
-### Online-Compiler zum Testen eurer Programme
+### Das Spekulatius-Lachs-Rezept von Pingu-Opa Max
 
-https://minond.xyz/brainfuck/
+https://www.essen-und-trinken.de/rezepte/59961-rzpt-lachsfilet-mit-spekulatiuskruste
 
 ### ASCII-Tabelle als Hilfestellung
 *(unter Linux mit `ascii -d` erzeugbar)*
