@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BrainfuckInterpreter.iml" filepath="$PROJECT_DIR$/BrainfuckInterpreter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/solution/solution.iml" filepath="$PROJECT_DIR$/solution/solution.iml" />
+      <module fileurl="file://$PROJECT_DIR$/solution/src/src.iml" filepath="$PROJECT_DIR$/solution/src/src.iml" />
+    </modules>
+  </component>
+</project>
