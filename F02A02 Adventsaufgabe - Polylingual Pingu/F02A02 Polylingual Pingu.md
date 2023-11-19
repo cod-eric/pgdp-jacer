@@ -37,9 +37,8 @@ Neben den ganzen imposanten Terrarien hängt an der Wand hinter einer Glasscheib
 
 # ignore the imports, they are not that relevant for understanding the Python language right now
 from __future__ import annotations
-from typing import Union
+from typing import *
 
-import datetime as dt
 import random as rnd
 
 
@@ -60,7 +59,7 @@ class Snake:
     snake_genera = ["Zwergpython", "Baumpython", "Schwarzkopfpython", "Wasserpython", "Raupenpython", "Netzpython"]
 
     # a Snake constructor which requires a name, genus, parents tuple and birthday
-    def __init__(self, name: str, genus: str, parents: (Union[Snake, None], Union[Snake, None]), birthday: int) -> None:
+    def __init__(self, name: str, genus: str, parents: Tuple[Union[Snake, None], Union[Snake, None]], birthday: int) -> None:
         self.name = name
         if genus not in self.snake_genera:
             print("This looks like a weird mutation...")
@@ -72,7 +71,7 @@ class Snake:
 
     # lets the snake make a "hiss" sound on the console
     def hiss(self) -> None:
-        print("💤" + self.name + " hisses!")
+        print("💤 " + self.name + " hisses!")
 
     # lets the snake slither around
     def slither(self) -> None:
@@ -94,15 +93,9 @@ class Egg:
     next_name_index = 0
     next_snake_names = ["Sssusan", "Zzzoe", "Sssteven", "Franc-hiss"]
 
-    # automatically generates an incrementing name for an egg
-    def get_next_name(self) -> str:
-        Egg.next_name_index += 1
-        return Egg.next_snake_names[Egg.next_name_index]
-
     # an Egg constructor requiring a genus and parents tuple
-    def __init__(self, genus: str, parents: (Snake, Snake)) -> None:
+    def __init__(self, genus: str, parents: Tuple[Snake, Snake]) -> None:
         self.days_until_hatch = 5
-        self.currentlyIncubated = False
         self.genus = genus
         self.mother, self.father = parents
 
@@ -113,8 +106,10 @@ class Egg:
             self.days_until_hatch -= 1
             print("🥚 The egg cracked a little. It will hatch soon!")
         if self.days_until_hatch <= 0:
+            snake_name = Egg.next_snake_names[Egg.next_name_index]
+            Egg.next_name_index += 1
             return Snake(
-                self.get_next_name(),
+                snake_name,
                 self.genus,
                 (self.mother, self.father),
                 current_day
@@ -161,9 +156,8 @@ while not len(terrarium["eggs"]) == 0:
             print("Placing the new snake into the terrarium")
             terrarium["snakes"].append(egg_or_snake)
             terrarium["snakes"][-1].slither()
-    for egg in terrarium["eggs"]:
-        print("🧹 Cleaning up the eggshells of hatched snakes")
-        terrarium["eggs"] = [x for x in terrarium["eggs"] if x.days_until_hatch > 0]
+    print("🧹 Cleaning up the eggshells of hatched snakes")
+    terrarium["eggs"] = [x for x in terrarium["eggs"] if x.days_until_hatch > 0]
     day += 1
 
 
@@ -179,6 +173,7 @@ while visitor_still_watching:
     while True:
         user_input = input("🤵 The museum curator asks: Do you want to keep watching the [s]nakes or [l]eave? ")
         if user_input == "l":
+            print("The museum is now closed for the day.")
             exit()
         elif user_input == "s":
             break
@@ -188,7 +183,7 @@ while visitor_still_watching:
 
 #### 🪜 Aufgaben
 
-*Wichtig: Da viele der folgenden Aufgaben rein konzeptuell und zum Nachdenken sind. gibt es dafür keine Tests, lediglich einige Notizen zur Lösung weiter unten.*
+***Wichtig**: Da viele der folgenden Aufgaben rein konzeptuell und zum Nachdenken sind. gibt es dafür keine Tests, lediglich einige Notizen zur Lösung auf der nächsten Seite.*
 
 1. Führe das Skript ein paar Mal aus.
     *Damit ihr euch nicht mit nervigem Setup rumschlagen müsst, gibt es den Code auch [hier](https://replit.com/@EricJacob/F02A02-Wurgeschlangen?v=1) als Repl, das im Browser läuft.*
@@ -210,6 +205,8 @@ while visitor_still_watching:
 
         - `boolean` heißt in Python `bool`, `String` heißt `str`
 
+        - Es gibt Wörter für logische Operationen: `&&` = `and`, `!` = `not`, `||` = `or`
+
         - Funktionen, Klassen, `if`s und Schleifen werden nicht mit `{}` umschlossen, sondern unter `:` eingerückt
 
         - Keine runden Klammern um Statements bei `if`, `for`, `while`
@@ -228,15 +225,23 @@ while visitor_still_watching:
             print("Der Wert ist " + 23)  # Fehler, da man auf strs nicht addieren kann
             print("Der Wert ist " + str(23))  # korrekt
             ```
+            
+        - In Klassen müssen Attribute nicht zu Beginn der Klasse deklariert werden. Üblicherweise werden diese im Konstruktor (`__init__()`) erstellt. Auch muss jeder Methode einer Klasse `self`, also die Referenz auf das zu bearbeitende Objekt (ähnlich zu `this` in Java) mitgegeben werden.
 
-    - Es gibt keine alles umschließende Klasse. Python ist eine sogenannte Skriptsprache, die zwar Objektorientierung bietet, aber nicht vorschreibt. In Java dagegen muss alles in einer Klasse passieren. Weniger Objektorientierung hat auch zur Folge, dass man nicht wie in Java erst aus der Klasse `System` das Attribut `out` wählen muss, um darauf `println()` auszuführen - man kann einfach `print()` schreiben.
+    - Es gibt keine alles umschließende Klasse und keine `main`-Methode, die bei Programmstart aufgerufen wird. Python ist eine sogenannte Skriptsprache, die zwar Objektorientierung bietet, aber nicht vorschreibt. Beim Ausführen wird einfach Zeile für Zeile des Programms ausgeführt.
+        In Java dagegen muss alles in einer Klasse passieren. Weniger Objektorientierung hat auch zur Folge, dass man nicht wie in Java erst aus der Klasse `System` das Attribut `out` wählen muss, um darauf `println()` auszuführen - man kann einfach `print()` schreiben.
 
-    - Allgemein werden keine Datentypen wie `int`, `String`, etc beim Erstellen einer Variable angegeben. Man kann mit `variable: datatype` zwar explizite *type annotation* vorgeben, muss dies aber nicht. Das hat auch zur Folge, dass z.B. folgender Code keinen Fehler wirft:
+    - Allgemein werden keine Datentypen wie `int`, `String`, etc beim Erstellen einer Variable angegeben. Python wählt automatisch einen passenden Typ und passt intern auch die Größe beliebig an (es gibt also keine Probleme wie in Java, dass eine Zahl nicht in einen `short` passt und abgeschnitten wird). Man kann mit `variable: datatype` zwar explizite *type annotation* vorgeben (statt `variable = "Hi"` also `variable: str = "Hi"`), muss dies aber nicht. Das hat auch zur Folge, dass z.B. folgender Code keinen Fehler wirft:
 
         ```py
         variable = "Hi"
-        variable = 23
+        print(type(variable))	# gibt `str` aus
+        
+        variable = 23	# Python ändert den Typ von `variable` hier selbst um
+        print(type(variable))	# gibt `int` aus
+        
         variable = []
+        print(type(variable))	# gibt `list` aus
         ```
 
         oder auch innerhalb einer Liste (das Python-Äquivalent zu Arrays, allerdings ohne fixe Länge und ohne fixen Datentyp):
@@ -263,18 +268,141 @@ while visitor_still_watching:
         # Code
     ```
 
-    kann der Nutzer beim Aufruf von `do_something()` nicht schließen, welchen Typ er hier übergeben soll oder was er zurückbekommt, ohne sich den Code anschauen zu müssen. So ist es deutlich klarer (auch, weil eine IDE beim Hovern anzeigt, was erwartet wird):
+    kann der Nutzer beim Aufruf von `do_something()` nicht schließen, welchen Typ er hier übergeben soll oder was er zurückbekommt, ohne sich den Code anzuschauen. So ist es deutlich klarer (auch, weil eine IDE beim Hovern dann anzeigt, was erwartet wird):
 
     ```py
     def do_something(value: int) -> bool:
         # Code
     ```
 
-4. Siehe
+4. Siehe `Würgeschlangen/WuergeschlangenJava`
 
 
 
-Nach dieser kniffligen Aufgabe gibt’s erstmal ein paar [Lachsplätzchen](https://www.falstaff.com/de/rezepte/kochen/lachskekse) zur Belohnung.
+Nach dieser kniffligen Aufgabe gibt’s für die Jungpinguine erstmal ein paar [Lachsplätzchen](https://www.falstaff.com/de/rezepte/kochen/lachskekse) zur Belohnung. Eine kurze Pause später begebt ihr euch zur nächsten Abteilung im Museum:
+
+
+
+### 👽 Teilbereich Yoga-Praktizierender Extraterrestrialer Spezies: Clevere Riesen Im Pantomimischen Traum - T.Y.P.E.S.C.R.I.P.T.
+
+Einmal die Treppe hoch, schon steht ihr im *Teilbereich Yoga-Praktizierender Extraterrestrialer Spezies: Clevere Riesen Im Pantomimischen Traum*, kurz TypeScript. Links und rechts wird der Raum von beleuchteten Vitrinen gesäumt, welche verschiedenste unerklärliche Fundstücke enthalten, die im Zusammenhang mit vermeintlichen Sichtungen der Cleveren Traumriesen stehen.
+
+Ein vergilbtes Blatt Papier aus dem Jahre 2012 beschreibt laut der nebenstehenden Erklärtafel ein bei den Cleveren Traumriesen beliebtes Spiel: TicTacToe:
+
+```typescript
+enum Cell { Empty, X, O}
+
+const playfield : Cell[][] = [
+    [Cell.Empty, Cell.Empty, Cell.Empty],
+    [Cell.Empty, Cell.Empty, Cell.Empty],
+    [Cell.Empty, Cell.Empty, Cell.Empty]
+]
+
+
+function checkIfWon(field: Cell[][]) {
+    // check rows
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] == field[i][1] && field[i][1] == field[i][2]) {
+            return field[i][0]      // returns the player who won
+        }
+    }
+
+    // check columns
+    for (let i = 0; i < 3; i++) {
+        if (field[0][i] == field[1][i] && field[1][i] == field[2][i]) {
+            return field[0][i]
+        }
+    }
+
+    // check diagonal top left to bottom right
+    if (field[0][0] == field[1][1] && field[1][1] == field[2][2]) {
+        return field[0][0]
+    }
+
+    // check diagonal bottom left to top right
+    if (field[0][2] == field[1][1] && field[1][1] == field[2][0]) {
+        return field[0][2]
+    }
+
+    return Cell.Empty   // signals that no player won yet
+}
+
+function prettyPrintArray(field: Cell[][]) {
+    let line = "\n"
+    for (var row of field) {
+        for (var cell of row) {
+            if (cell == Cell.X) {
+                line += "X "
+            } else if (cell == Cell.O) {
+                line += "O "
+            } else {
+                line += "_ "
+            }
+        }
+        line += "\n"
+    }
+    console.log(line)
+}
+
+
+var round : number = 0;
+var currentPlayer : number = 0;
+var newRound = true
+while (true) {
+    if (newRound) {
+        round++
+        currentPlayer = round % 2;
+        console.log("Round " + round)
+
+        prettyPrintArray(playfield)
+    } else {
+        newRound = true
+    }
+
+
+    let cellUserWantsToPlay = prompt("Which cell do you want to play? (Use one digit (0-8) to determine cell or 'q' to quit.)")
+    if (cellUserWantsToPlay != null) {
+        if (cellUserWantsToPlay == "q") {
+            break
+        }
+        if (+cellUserWantsToPlay < 0 || +cellUserWantsToPlay > 8) {
+            alert("Please enter a valid field.")
+            newRound = false
+            continue
+        }
+
+        let row = Math.floor(+cellUserWantsToPlay / 3)
+        let col = +cellUserWantsToPlay % 3
+
+        if (playfield[row][col] != Cell.Empty) {
+            alert("Cell is not empty. Please enter a valid cell position.")
+            newRound = false
+            continue
+        }
+
+        if (currentPlayer == 0) {
+            playfield[row][col] = Cell.O
+        } else {
+            playfield[row][col] = Cell.X
+        }
+        
+        let winner = checkIfWon(playfield)
+        if (winner != Cell.Empty) {
+            alert("Player " + winner + " won!")
+            break
+        }
+    }
+}
+```
+
+#### 🪜 Aufgaben
+
+***Wichtig**: Da viele der folgenden Aufgaben rein konzeptuell und zum Nachdenken sind. gibt es dafür keine Tests, lediglich einige Notizen zur Lösung auf der nächsten Seite.*
+
+1. Führe das Skript ein paar Mal aus.
+   *Damit ihr euch nicht mit nervigem Setup rumschlagen müsst, gibt es den Code auch [hier](https://www.typescriptlang.org/play?#code/KYOwrgtgBAwsA28oG8oFEIAcAuBPANFABqEDyAvgFCUDGA9iAM7ZSbwCGuAZgJYIAmUAFywE8ANoBdKVAC8UcZSjKFcRADoMOAqI1a8hNfE1Y8k-EpXijJ7YbG2Du4-tznLy6w9f29pnTaukpTB1FxgIDTYPAxQNAAWwDQA1gCSXADqDAAUvAIiRlJSAJQoHlAA9BVxiSlQAE50AO6M5Vx09VDZ8MAsPHJQAAwA3FD9ADxQAMyjPADUc6XI5SpjXF158PziPNKDknLym9u74gCMBwBkl1DHO9IXh7d8W-fiAEySSyurKvW9YHqIGeAje+1+lWq-2wgKYUGwiVYHFwwE6TXidCgTQYP2UVFWVHKVRqSWScTo8EgTDaHS6PT6AxGYygkxmYwW3whyh461yL22+3uTzuFyF1xBr1Fu2F-I+0l2nK5q2hsIlAvlwSV+JUhNWxISpKg-B47AA5gx2EhsHRMFAelwWNaoAAjOjYa3Qeo8U3xbDlHkbWWC8GyI6y0WPcUih4HUNquVyxUQlVA+PBzU66h66oGurGs0WpCu910aD2x2Y622r0+v2rAN80GCz4y0ERq43aPnWNh0GfcT7JO-FPAu7NjN4rN-AGpwL+FTExjekCWxjw+LsFggTFsTiorGxFF+wnhSLRWKYaF4AAKXpA2AAgvV6pxG1sCmIil8yqt6XaeCAwADAARAAOiAwE0p02QAG7sJ0jRNFAdDrMcQ6rO00FwZ0NBiMh6yIehXINrhiBPDYRBEUqyjwABQFzPIwFEFAkHUTqUAIIwQEkXhcY2KQVHUbRgFQAxLGkCxuK-OQHHwFxP5sb8wn0YxAD6kmKVA2oQtpSl0aJjHgaxmarPQTAUsA6jwHQprdHRxSUISlDYQ0dARIIIjgBAzr7vIIzOfBcSAv897Xsi+6eZAPmdH5wwBZ0gFNAASm5ICCPI2D1GAwCUOiPA9F0mXZUODaJSl7mCY07kLFJNDBaA2BhXuMWue5UAAKRQO8cVKmZjAWVZNnZMB5VpSxomtWlDlSZevQ3nej7Pq+u7cPyDkErJ8nLEqZWpel8JZTlBLUOUf6kfAACqXH1Bk7D3owAAqdBNbgAyXqWODDRk8Q8AkcR4fwmK4G5WJ3RWSKcAA-F0V1AQwQHGqaPAsNkgwALQABylE6-C9KiED6edyGdAA5AAjiT8KYmTYDI+oxTAetKg8YgsM3WDj3PciUAAITyOAiCCSzl3Xbd91PS9TzAWTjMKWxzr-OwyRSbp9a8nM51s2L2Cc5LkyDFAAA+huiZroscxL3MAHxQFjcvUZaqLYMNYXAOw8kNfu7BQHBtGCMc6iM1Jqy7W1RyrkdilmdE4CRzpU4Qn+iEDAAspu8TqFw1kdNkGtiFrFtc5wlTTEzie9OSSDyHnrPm+LRevZ1UwJ78DYrXciHSPQ8AHHzziOLggmrI79TO8BRhjGu24sMA-jqFArvu0BnudN7vs8IIROYHQS7niAgdl9RodjeHclx9R0cAdlKst2rXR1c+DUvb5flDyo7eyp34jd7G-ekCrm0gLbUUh-UEX8f4DAojfJUUk-xNAAoBFquY0iZByKArYh877ZHgSARBvN5Bzm0G-ZQI8x7P06MBCaOC8FzHGtiEAPMg6aQVm7ZWWpyhUHIEAA) im TypeScript Playground, das im Browser läuft.*
+2. Schau dir das TypeScript an und versuche, den Code zu verstehen. Was fällt dir auf? Was ist gleich, was ist anders als in Java?
+3. Versuche, den Code in Java umzusetzen. Was geht dabei in Java einfacher, was in TypeScript?
 
 
 
