@@ -38,11 +38,11 @@ class Snake:
 
     # lets the snake make a "hiss" sound on the console
     def hiss(self) -> None:
-        print(f"💤{self.name} hisses!")
+        print("💤" + self.name + " hisses!")
 
     # lets the snake slither around
     def slither(self) -> None:
-        print(f"🐍{self.name} slithers!")
+        print("🐍", self.name, "slithers!")
 
     # breeds this egg with another Snake and returns a new Egg
     def breed(self, other_snake: Snake) -> Egg:
@@ -108,7 +108,7 @@ print(adam.name + " and " + eve.name + " moved into the terrarium.")
 
 
 # let Adam and Eve lay 3 eggs
-for _ in range(3):
+for i in range(3):
     terrarium["eggs"].append(adam.breed(eve))
     print("🪺 An egg was laid!")
 
@@ -116,14 +116,14 @@ for _ in range(3):
 # now incubate the eggs until all the baby snakes hatched
 print("The eggs will now be incubated")
 day = 0
-while terrarium["eggs"]:
+while not len(terrarium["eggs"]) == 0:
     print("☀️ A new day " + str(day) + " begins")
     for i in range(len(terrarium["eggs"])):
         print("Incubating egg in the hatchery station at position", str(i),
               " - needs", str(terrarium["eggs"][i].days_until_hatch), "more days to hatch"
               )
         egg_or_snake = terrarium["eggs"][i].incubate(day)
-        if isinstance(egg_or_snake, Snake):
+        if type(egg_or_snake) == Snake:
             print("Placing the new snake into the terrarium")
             terrarium["snakes"].append(egg_or_snake)
             terrarium["snakes"][-1].slither()
