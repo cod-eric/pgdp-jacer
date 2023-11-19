@@ -6,6 +6,8 @@
 
 > 🎄 *Advent, Advent, ein Server brennt*… oder so. Vorweihnachtlich gibt es jeden Adventssonntag eine freiwillige inoffizielle Zusatzaufgabe, die weit über den Inhalt von PGdP hinausgehen und euch einige Programmierkonzepte zeigen sollen, die ihr so in PGdP nicht lernt.
 
+[TOC]
+
 ## 🎯 Lernziele
 
 In dieser Aufgabe lernt ihr einige andere Programmiersprachen neben Java kennen - und, dass ihr die meisten davon mit eurem Java-Wissen verstehen könnt, auch wenn ihr noch nie zuvor in diesen programmiert habt.
@@ -29,122 +31,252 @@ Ziel dieser Aufgabe ist es, die Ähnlichkeit und Unterschiede zwischen verschied
 Neben den ganzen imposanten Terrarien hängt an der Wand hinter einer Glasscheibe folgendes Papyrus der alten Pharaouinen:
 
 ```py
+###########
+# Imports #
+###########
 
+# ignore the imports, they are not that relevant for understanding the Python language right now
+from __future__ import annotations
+from typing import Union
+
+import datetime as dt
+import random as rnd
+
+
+#######################
+# Classes declaration #
+#######################
+
+class Snake:
+    """
+    This class represents a Snake with:
+    - name
+    - genus
+    - mother
+    - father
+    - date born
+    """
+
+    snake_genera = ["Zwergpython", "Baumpython", "Schwarzkopfpython", "Wasserpython", "Raupenpython", "Netzpython"]
+
+    # a Snake constructor which requires a name, genus, parents tuple and birthday
+    def __init__(self, name: str, genus: str, parents: (Union[Snake, None], Union[Snake, None]), birthday: int) -> None:
+        self.name = name
+        if genus not in self.snake_genera:
+            print("This looks like a weird mutation...")
+            self.genus = self.snake_genera[0]
+        else:
+            self.genus = genus
+        self.mother, self.father = parents
+        self.birthday = birthday
+
+    # lets the snake make a "hiss" sound on the console
+    def hiss(self) -> None:
+        print("💤" + self.name + " hisses!")
+
+    # lets the snake slither around
+    def slither(self) -> None:
+        print("🐍", self.name, "slithers!")
+
+    # breeds this egg with another Snake and returns a new Egg
+    def breed(self, other_snake: Snake) -> Egg:
+        return Egg(rnd.choice(self.snake_genera), (self, other_snake))
+
+class Egg:
+    """
+    This class represents a (Snake) Egg with:
+    - information about the days until it hatches
+    - genus
+    - mother
+    - father
+    """
+
+    next_name_index = 0
+    next_snake_names = ["Sssusan", "Zzzoe", "Sssteven", "Franc-hiss"]
+
+    # automatically generates an incrementing name for an egg
+    def get_next_name(self) -> str:
+        Egg.next_name_index += 1
+        return Egg.next_snake_names[Egg.next_name_index]
+
+    # an Egg constructor requiring a genus and parents tuple
+    def __init__(self, genus: str, parents: (Snake, Snake)) -> None:
+        self.days_until_hatch = 5
+        self.currentlyIncubated = False
+        self.genus = genus
+        self.mother, self.father = parents
+
+    # a method that slowly hatches the egg when incubated and always returns the "current entity",
+    # i.e. either the yet-to-hatch Egg or a Snake once hatched
+    def incubate(self, current_day: int) -> Union[Egg, Snake]:
+        if rnd.randrange(2) == 0:
+            self.days_until_hatch -= 1
+            print("🥚 The egg cracked a little. It will hatch soon!")
+        if self.days_until_hatch <= 0:
+            return Snake(
+                self.get_next_name(),
+                self.genus,
+                (self.mother, self.father),
+                current_day
+            )
+        else:
+            return self
+
+
+##################
+# Code procedure #
+##################
+
+# set up the terrarium
+terrarium = {
+    "snakes" : [],
+    "eggs" : []
+}
+
+# two initial snakes - Adam and Eve
+adam = Snake("Adam", "Zwergpython", (None, None), 0)
+eve = Snake("Eve", "Wasserpython", (None, None), 0)
+terrarium["snakes"].append(adam)
+terrarium["snakes"].append(eve)
+print(adam.name + " and " + eve.name + " moved into the terrarium.")
+
+
+# let Adam and Eve lay 3 eggs
+for i in range(3):
+    terrarium["eggs"].append(adam.breed(eve))
+    print("🪺 An egg was laid!")
+
+
+# now incubate the eggs until all the baby snakes hatched
+print("The eggs will now be incubated")
+day = 0
+while not len(terrarium["eggs"]) == 0:
+    print("☀️ A new day " + str(day) + " begins")
+    for i in range(len(terrarium["eggs"])):
+        print("Incubating egg in the hatchery station at position", str(i),
+              " - needs", str(terrarium["eggs"][i].days_until_hatch), "more days to hatch"
+              )
+        egg_or_snake = terrarium["eggs"][i].incubate(day)
+        if type(egg_or_snake) == Snake:
+            print("Placing the new snake into the terrarium")
+            terrarium["snakes"].append(egg_or_snake)
+            terrarium["snakes"][-1].slither()
+    for egg in terrarium["eggs"]:
+        print("🧹 Cleaning up the eggshells of hatched snakes")
+        terrarium["eggs"] = [x for x in terrarium["eggs"] if x.days_until_hatch > 0]
+    day += 1
+
+
+# let's simulate the snakes living in the terrarium until the visitor leaves
+print("The terrarium is now opened to visitors")
+visitor_still_watching = True
+while visitor_still_watching:
+    for _ in range(rnd.randrange(1, 4)):
+        snake_taking_action = rnd.choice(terrarium["snakes"])
+        snake_taking_action.hiss() if rnd.randrange(2) == 0 else snake_taking_action.slither()
+
+    user_input = ""
+    while True:
+        user_input = input("🤵 The museum curator asks: Do you want to keep watching the [s]nakes or [l]eave? ")
+        if user_input == "l":
+            exit()
+        elif user_input == "s":
+            break
+        else:
+            print("The museum curator did not understand what you said.")
 ```
 
+#### 🪜 Aufgaben
+
+*Wichtig: Da viele der folgenden Aufgaben rein konzeptuell und zum Nachdenken sind. gibt es dafür keine Tests, lediglich einige Notizen zur Lösung weiter unten.*
+
+1. Führe das Skript ein paar Mal aus.
+    *Damit ihr euch nicht mit nervigem Setup rumschlagen müsst, gibt es den Code auch [hier](https://replit.com/@EricJacob/F02A02-Wurgeschlangen?v=1) als Repl, das im Browser läuft.*
+2. Schau dir den Python-Code an und versuche, ihn zu verstehen. Was fällt dir auf? Was ist gleich, was ist anders als in Java?
+3. Für Rückgaben und Parameter bei Funktionen und Methoden muss man in Python eigentlich keine types angeben – warum kann das trotzdem sinnvoll sein?
+4. Versuche, den Python-Code in Java umzusetzen. Was geht dabei in Java einfacher, was in Python?
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+#### 🔍 Lösungsvorschlag
+
+2. Ein paar Dinge, die auffallen könnten:
+
+    - Anderer Syntax. Unter anderem:
+
+        - Keine Semikolons
+
+        - Kommentare beginnen mit einem `#`, Kommentarblöcke stehen zwischen `"""`
+
+        - `boolean` heißt in Python `bool`, `String` heißt `str`
+
+        - Funktionen, Klassen, `if`s und Schleifen werden nicht mit `{}` umschlossen, sondern unter `:` eingerückt
+
+        - Keine runden Klammern um Statements bei `if`, `for`, `while`
+
+        - Die `for`-Schleife nimmt eine `range` entgegen - aus `for (int i = 0; i < ziel; i++)` wird `for i in range(ziel)`.
+
+        - Die `enhanced for`-Schleife kann mit `in` direkt alle Werte aus Listen nehmen: `for (element : liste)` wird zu `for element in liste`.
+
+        - Python hat kein Prä-/Postinkrement/-dekrement – das kürzeste Mögliche ist `+=` bzw `-=`.
+
+        - User input (und auch Dateien lesen/schreiben, hier nicht gezeigt) ist deutlich einfacher. Statt `Scanner`-Objekte erstellen zu müssen und Fehler abzufangen schreibt man einfach `variable = input()` und bekommt einen String zurück.
+
+        - Datentypen-Umwandlung ist einfacher; statt `Integer.parseInt("23")` schreibt man `int("23")`. Umgekehrt kann z.B. die `print`-Funktion nur mit `str`s umgehen:
+
+            ```py
+            print("Der Wert ist " + 23)  # Fehler, da man auf strs nicht addieren kann
+            print("Der Wert ist " + str(23))  # korrekt
+            ```
+
+    - Es gibt keine alles umschließende Klasse. Python ist eine sogenannte Skriptsprache, die zwar Objektorientierung bietet, aber nicht vorschreibt. In Java dagegen muss alles in einer Klasse passieren. Weniger Objektorientierung hat auch zur Folge, dass man nicht wie in Java erst aus der Klasse `System` das Attribut `out` wählen muss, um darauf `println()` auszuführen - man kann einfach `print()` schreiben.
+
+    - Allgemein werden keine Datentypen wie `int`, `String`, etc beim Erstellen einer Variable angegeben. Man kann mit `variable: datatype` zwar explizite *type annotation* vorgeben, muss dies aber nicht. Das hat auch zur Folge, dass z.B. folgender Code keinen Fehler wirft:
+
+        ```py
+        variable = "Hi"
+        variable = 23
+        variable = []
+        ```
+
+        oder auch innerhalb einer Liste (das Python-Äquivalent zu Arrays, allerdings ohne fixe Länge und ohne fixen Datentyp):
+
+        ```py
+        liste = ["Hallo", 6.5, [9]]
+        ```
+
+    - Python wird im Gegensatz zu Java beim Ausführen nicht *kompiliert*, sondern *interpretiert*. Darum muss – im Gegensatz zu Java – alles im Code definiert werden, *bevor* es verwendet werden kann. Beispiel:
+
+        ```py
+        print(fkt(2))	# Fehler, da fkt noch nicht definiert wurde
+        
+        def fkt(zahl):
+            return zahl + 2
+        
+        print(fkt(2))	# funktioniert
+        ```
+
+3. Das kann z.B. von Vorteil sein, um dem Nutzer einen Hinweis zu geben, was eine Funktion erwartet. Aus
+
+    ```py
+    def do_something(value):
+        # Code
+    ```
+
+    kann der Nutzer beim Aufruf von `do_something()` nicht schließen, welchen Typ er hier übergeben soll oder was er zurückbekommt, ohne sich den Code anschauen zu müssen. So ist es deutlich klarer (auch, weil eine IDE beim Hovern anzeigt, was erwartet wird):
+
+    ```py
+    def do_something(value: int) -> bool:
+        # Code
+    ```
+
+4. Siehe
 
 
 
-
-— # TODO below this line —
-
-## 🧱 Template
-
-Das Template für diese Aufgabe sieht wie folgt aus:
-*(✒️ bedeutet, dass du in dieser Methode etwas ändern/ergänzen musst.)*
-
-- ✒️ `runBrainfuckSequence(int[] tape, String code, boolean printAsChars, boolean showSteps)` ist die Hauptmethode - hier iterierst du über die Zeichen des Codes und führst die Befehle auf deinem Band aus.
-
-    - `tape` ist das Datenband in Form eines `int`-Arrays. Beachte, dass dieses zu Beginn beliebig lang sein und auch bereits Daten beinhalten kann.
-    - `code` ist der Brainfuck-Code.
-    - `printAsChars` gibt an, ob die Ausgaben bei einem `.` in `code` als `int`s oder `char`s dargestellt werden sollen (macht das Debugging leichter).
-    - `showSteps` gibt an, ob der aktuelle Ausführungszustand nach jedem ausgeführten Befehl ausgegeben werden soll (siehe Aufgabe Pretty Print weiter unten).
-
-- ✒️ `addPlaceToTape(int[] oldTape, boolean inFront)` verlängert das Band bei Bedarf, indem am linken oder rechten Ende Zellen ergänzt werden. Diese Methode kannst du in `runBrainfuckSequence` nutzen.
-
-    *Kleine Anmerkung: Diese Art der Arrayvergrößerung ist sehr ineffizient - noch kennen wir allerdings nichts besseres. Solange dein Code nicht hundertmal in eine Richtung läuft, sollte das auch kein Problem sein.*
-
-    - `oldTape` ist das aktuelle Band.
-    - `inFront` gibt an, ob die zusätzliche Zelle links (front) oder rechts (back bzw. `!inFront`) angefügt werden soll.
-    - Rückgabe: das vergrößerte Array
-
-- ✒️ `prettyPrintCode(int[] tape, String code, int posInCode, int posInTape)` gibt den aktuellen Zustand der Turingmaschine in einem leserlichen (und leicht debug-baren) Format aus.
-
-    - `tape` ist das aktuelle Band.
-
-    - `code` ist der Brainfuck-Code.
-
-    - `posInCode` ist die aktuelle Position im Code.
-
-    - `posInTape` ist die aktuelle Position des Kopfs auf dem Band.
-
-- `readCharFromConsole()` ließt das nächste Zeichen von der Konsole und gibt dieses zurück. Diese Methode kannst du in `runBrainfuckSequence` nutzen.
-
-    - Rückgabe: das gelesene Zeichen
+Nach dieser kniffligen Aufgabe gibt’s erstmal ein paar [Lachsplätzchen](https://www.falstaff.com/de/rezepte/kochen/lachskekse) zur Belohnung.
 
 
-
-## 🪜 Aufgaben
-
-### 1. Bandvergrößerung
-
-Zuerst sollst du `addPlaceToTape()` implementieren. Achte darauf, die Daten des alten Arrays in das neue zu übernehmen und die neue Zelle am richtigen Ende hinzuzufügen.
-
-### 2. Datenspeicherung
-
-Überlege dir nun, wie du in `runBrainfuckSequence()` die aktuelle Position im Code und auf dem Band speichern willst.
-
-Der einfacheren Lesbarkeit halber sollen Leerzeichen im `code` erlaubt sein - für die Abarbeitung des Codes musst du diese jedoch entfernen. Nutze dafür die Methode `.replace("zu ersetzender String", "neuer String")` auf dem entsprechenden String.
-
-### 3. Pretty Print
-
-Nach jedem Befehl aus `code` soll das aktuelle Band und die Zeigerposition wie folgt ausgegeben werden:
-
-````
-Step 165:	tape: [1, 0],	instruction: +
-			       ^
-````
-
-Implementiere dafür die Methode `prettyPrintCode()`.
-
-Überlege dabei, wie du dir die aktuelle Position im Code (welche hinter “Step” steht) und im Array zunutze machen kannst, den Zeiger (`^`) an der richtigen Stelle auszugeben.
-
-*Tipp: Um das Array leicht ausgeben zu können, bietet sich möglicherweise ein Blick in die [Arrays-Library](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html) an.*
-
-*Tipp: Um die Abstände zwischen den einzelnen Komponenten trotz verschieden großer Zahlen hinter “Step” gleich zu behalten, kannst du Tabs printen - das Zeichen dafür ist `\t`.*
-
-### 4. Befehle lesen & verarbeiten
-
-Iteriere nun über die Befehle in `code` und implementiere eine Fallunterscheidung sowie die einfachen Instruktionen (also `+`, `-`, `<`, `>`, `.`, `,`). Achte bei `<` und `>` darauf, dass keine OutOfBounds-Error entstehen und das Band entsprechend vergrößert wird.
-
-### 5. Loops
-
-- Wie kannst du (ohne Rekursion! - nicht auf dumme Gedanken kommen) sicherstellen, beim Überspringen des Schleifencodes im Falle von `currentCell == 0`, an der richtigen Endklammer `]` rauszukommen?
-- Wie läufst du bei einem `]` an die richtige zugehörige Startklammer `[` zurück? Achte darauf, bei der Abarbeitung des nächsten Zeichens keines zu überspringen!
-
-Beachte, dass beim Überspringen bzw. Zurücklaufen **keine** Befehle ausgeführt werden sollen!
-
-*Tipp: Es genügt eine primitive Variable.*
-
-### 6. Fehlererkennung
-
-Woran kann man erkennen, dass der Code zu viele öffnende bzw. schließende Klammern enthält? Gib in diesen Fällen, sowie bei unbekannten Zeichen im Programmcode eine Meldung auf der Konsole aus und beende die Ausführung des Programms.
-
-
-
-## 🧪 Tests
-
-Für diese Aufgabe gibt es keine automatisierten Tests. Du kannst allerdings mit folgenden Beispielen testen, ob dein Programm die Anforderungen erfüllt.
-
-1. Code: `+ + +`, Tape: `{2}`
-
-    erwartetes Ergebnis: `[5]`
-
-2. Code: `+ + [ > + + > - - - < < - ] >`, Tape: `{}`
-
-    erwartetes Ergebnis: `[0, 4, -6]`
-
-3. Code: `+ + + + + + + + + + [ > + + + + + + > + + + + + + + + + < < - ] > + + . > + + + + + . `, Tape: `{1, 1}`
-
-    erwartetes Ergebnis: Konsole: `Hi`, Tape: `[0, 72, 105]`
-
-4. Code: `+ + [ > + + [ > + + + < - ] < - ]`, Tape: `{}`
-
-    erwartetes Ergebnis: Tape: `[0, 0, 12]`
-
-5. Code: `> + + + + + + + + + [ < + + + + + + + + > - ] < . > + + + + + + + [ < + + + + > - ] < + . + + + + + + + . . + + + . - ] > + + + + + + + + [ < + + + + > - ] < . > + + + + + + + + + + + [ < + + + + + + + + > - ] < - . - - - - - - - - . + + + . - - - - - - . - - - - - - - - . [ - ] > + + + + + + + + [ < + + + + > -   ] < + . [ - ] + + + + + + + + + + .`, Tape: `{}`
-
-    erwartetes Ergebnis: Konsole: `Hello world!`, Tape: `[10, 0]`
 
 
 
@@ -154,25 +286,6 @@ Für diese Aufgabe gibt es keine automatisierten Tests. Du kannst allerdings mit
 
 https://www.essen-und-trinken.de/rezepte/59961-rzpt-lachsfilet-mit-spekulatiuskruste
 
-### ASCII-Tabelle als Hilfestellung
-*(unter Linux mit `ascii -d` erzeugbar)*
+### Das Lachskekse-Rezept
 
-```
-0 NUL    16 DLE    32      48 0    64 @    80 P    96 `   112 p
-1 SOH    17 DC1    33 !    49 1    65 A    81 Q    97 a   113 q
-2 STX    18 DC2    34 "    50 2    66 B    82 R    98 b   114 r
-3 ETX    19 DC3    35 #    51 3    67 C    83 S    99 c   115 s
-4 EOT    20 DC4    36 $    52 4    68 D    84 T   100 d   116 t
-5 ENQ    21 NAK    37 %    53 5    69 E    85 U   101 e   117 u
-6 ACK    22 SYN    38 &    54 6    70 F    86 V   102 f   118 v
-7 BEL    23 ETB    39 '    55 7    71 G    87 W   103 g   119 w
-8 BS     24 CAN    40 (    56 8    72 H    88 X   104 h   120 x
-9 HT     25 EM     41 )    57 9    73 I    89 Y   105 i   121 y
-10 LF    26 SUB    42 *    58 :    74 J    90 Z   106 j   122 z
-11 VT    27 ESC    43 +    59 ;    75 K    91 [   107 k   123 {
-12 FF    28 FS     44 ,    60 <    76 L    92 \   108 l   124 |
-13 CR    29 GS     45 -    61 =    77 M    93 ]   109 m   125 }
-14 SO    30 RS     46 .    62 >    78 N    94 ^   110 n   126 ~
-15 SI    31 US     47 /    63 ?    79 O    95 _   111 o   127 DEL
-```
-Zu beachten dabei: Die Zeichen mit den Zahlwerten 0 bis einschließlich 31 sind *control characters*, welche auf den meisten Konsolen eher etwas *bewirken* (z.B. ist 13 ein Zeilenumbruch), als etwas anzuzeigen.
+https://www.falstaff.com/de/rezepte/kochen/lachskekse
