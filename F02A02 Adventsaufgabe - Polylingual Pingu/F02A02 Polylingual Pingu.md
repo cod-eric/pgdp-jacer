@@ -183,7 +183,7 @@ while visitor_still_watching:
 
 #### 🪜 Aufgaben
 
-***Wichtig**: Da viele der folgenden Aufgaben rein konzeptuell und zum Nachdenken sind. gibt es dafür keine Tests, lediglich einige Notizen zur Lösung auf der nächsten Seite.*
+***Wichtig**: Da viele der folgenden Aufgaben rein konzeptuell und zum Nachdenken sind, gibt es dafür keine Tests, lediglich einige Notizen zur Lösung auf der nächsten Seite.*
 
 1. Führe das Skript ein paar Mal aus.
     *Damit ihr euch nicht mit nervigem Setup rumschlagen müsst, gibt es den Code auch [hier](https://replit.com/@EricJacob/F02A02-Wurgeschlangen?v=1) als Repl, das im Browser läuft.*
@@ -397,7 +397,7 @@ while (true) {
 
 #### 🪜 Aufgaben
 
-***Wichtig**: Da viele der folgenden Aufgaben rein konzeptuell und zum Nachdenken sind. gibt es dafür keine Tests, lediglich einige Notizen zur Lösung auf der nächsten Seite.*
+***Wichtig**: Da viele der folgenden Aufgaben rein konzeptuell und zum Nachdenken sind, gibt es dafür keine Tests, lediglich einige Notizen zur Lösung auf der nächsten Seite.*
 
 1. Führe das Skript ein paar Mal aus.
    *Damit ihr euch nicht mit nervigem Setup rumschlagen müsst, gibt es den Code auch [hier](https://www.typescriptlang.org/play?#code/KYOwrgtgBAwsA28oG8oFEIAcAuBPANFABqEDyAvgFCUDGA9iAM7ZSbwCGuAZgJYIAmUAFywE8ANoBdKVAC8UcZSjKFcRADoMOAqI1a8hNfE1Y8k-EpXijJ7YbG2Du4-tznLy6w9f29pnTaukpTB1FxgIDTYPAxQNAAWwDQA1gCSXADqDAAUvAIiRlJSAJQoHlAA9BVxiSlQAE50AO6M5Vx09VDZ8MAsPHJQAAwA3FD9ADxQAMyjPADUc6XI5SpjXF158PziPNKDknLym9u74gCMBwBkl1DHO9IXh7d8W-fiAEySSyurKvW9YHqIGeAje+1+lWq-2wgKYUGwiVYHFwwE6TXidCgTQYP2UVFWVHKVRqSWScTo8EgTDaHS6PT6AxGYygkxmYwW3whyh461yL22+3uTzuFyF1xBr1Fu2F-I+0l2nK5q2hsIlAvlwSV+JUhNWxISpKg-B47AA5gx2EhsHRMFAelwWNaoAAjOjYa3Qeo8U3xbDlHkbWWC8GyI6y0WPcUih4HUNquVyxUQlVA+PBzU66h66oGurGs0WpCu910aD2x2Y622r0+v2rAN80GCz4y0ERq43aPnWNh0GfcT7JO-FPAu7NjN4rN-AGpwL+FTExjekCWxjw+LsFggTFsTiorGxFF+wnhSLRWKYaF4AAKXpA2AAgvV6pxG1sCmIil8yqt6XaeCAwADAARAAOiAwE0p02QAG7sJ0jRNFAdDrMcQ6rO00FwZ0NBiMh6yIehXINrhiBPDYRBEUqyjwABQFzPIwFEFAkHUTqUAIIwQEkXhcY2KQVHUbRgFQAxLGkCxuK-OQHHwFxP5sb8wn0YxAD6kmKVA2oQtpSl0aJjHgaxmarPQTAUsA6jwHQprdHRxSUISlDYQ0dARIIIjgBAzr7vIIzOfBcSAv897Xsi+6eZAPmdH5wwBZ0gFNAASm5ICCPI2D1GAwCUOiPA9F0mXZUODaJSl7mCY07kLFJNDBaA2BhXuMWue5UAAKRQO8cVKmZjAWVZNnZMB5VpSxomtWlDlSZevQ3nej7Pq+u7cPyDkErJ8nLEqZWpel8JZTlBLUOUf6kfAACqXH1Bk7D3owAAqdBNbgAyXqWODDRk8Q8AkcR4fwmK4G5WJ3RWSKcAA-F0V1AQwQHGqaPAsNkgwALQABylE6-C9KiED6edyGdAA5AAjiT8KYmTYDI+oxTAetKg8YgsM3WDj3PciUAAITyOAiCCSzl3Xbd91PS9TzAWTjMKWxzr-OwyRSbp9a8nM51s2L2Cc5LkyDFAAA+huiZroscxL3MAHxQFjcvUZaqLYMNYXAOw8kNfu7BQHBtGCMc6iM1Jqy7W1RyrkdilmdE4CRzpU4Qn+iEDAAspu8TqFw1kdNkGtiFrFtc5wlTTEzie9OSSDyHnrPm+LRevZ1UwJ78DYrXciHSPQ8AHHzziOLggmrI79TO8BRhjGu24sMA-jqFArvu0BnudN7vs8IIROYHQS7niAgdl9RodjeHclx9R0cAdlKst2rXR1c+DUvb5flDyo7eyp34jd7G-ekCrm0gLbUUh-UEX8f4DAojfJUUk-xNAAoBFquY0iZByKArYh877ZHgSARBvN5Bzm0G-ZQI8x7P06MBCaOC8FzHGtiEAPMg6aQVm7ZWWpyhUHIEAA) im TypeScript Playground, das im Browser läuft.*
