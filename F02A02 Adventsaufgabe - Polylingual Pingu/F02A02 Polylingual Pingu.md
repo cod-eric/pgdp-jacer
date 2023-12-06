@@ -10,7 +10,7 @@
 
 ## 🎯 Lernziele
 
-In dieser Aufgabe lernt ihr einige andere Programmiersprachen neben Java kennen - und, dass ihr die meisten davon mit eurem Java-Wissen verstehen könnt, auch wenn ihr noch nie zuvor in diesen programmiert habt.
+In dieser Aufgabe lernt ihr zwei weitere Sprachen neben Java kennen - und, dass ihr die meisten Programmiersprachen mit eurem Java-Wissen verstehen könnt, auch wenn ihr noch nie zuvor in diesen programmiert habt.
 
 
 
@@ -22,7 +22,7 @@ Zur vorweihnachtlichen Tradition der Pinguine gehört seit eh und je der alljäh
 
 ## 📝 Aufgabenbeschreibung
 
-Ziel dieser Aufgabe ist es, die Ähnlichkeit und Unterschiede zwischen verschiedenen Programmiersprachen zu sehen und Algorithmen in verschiedenen Sprachen umzusetzen.
+Ziel dieser Aufgabe ist es, die Ähnlichkeit und Unterschiede zwischen verschiedenen Programmiersprachen zu sehen und Code in verschiedenen Sprachen umzusetzen.
 
 
 
@@ -283,128 +283,40 @@ Nach dieser kniffligen Aufgabe gibt’s für die Jungpinguine erstmal ein paar [
 
 
 
-### 👽 Teilbereich Yoga-Praktizierender Extraterrestrialer Spezies: Clevere Riesen Im Pantomimischen Traum - T.Y.P.E.S.C.R.I.P.T.
+### 🤪 Abteilung für Unsinn und österreichisches Essen - JavaScript-Schnitzeljagd
 
-Einmal die Treppe hoch, schon steht ihr im *Teilbereich Yoga-Praktizierender Extraterrestrialer Spezies: Clevere Riesen Im Pantomimischen Traum*, kurz TypeScript. Links und rechts wird der Raum von beleuchteten Vitrinen gesäumt, welche verschiedenste unerklärliche Fundstücke enthalten, die im Zusammenhang mit vermeintlichen Sichtungen der Cleveren Traumriesen stehen.
+Einmal die Treppe hoch, schon steht ihr in der *Abteilung für Unsinn und österreichisches Essen*. Wie das zum interaktiven Mitmachspiel an der Wand, einer JavaScript-Schnitzeljagd, passt? “Ganz einfach”, sagt Museumsdirektorin Jeanine-Sahra: “In JavaScript, there is a beautiful, elegant, highly expressive language that is buried under a steaming pile of good intentions and blunders”.
 
-Ein vergilbtes Blatt Papier aus dem Jahre 2012 beschreibt laut der nebenstehenden Erklärtafel ein bei den Cleveren Traumriesen beliebtes Spiel: TicTacToe:
+Etwas verunsichert betretet ihr den Raum. Links und rechts wird der Raum von beleuchteten Vitrinen gesäumt, welche verschiedenste abstruse Konstruktionen und Kunstinstallationen beherbergen; besonders viele bilden Schnitzel, Klöße, Tafelspitz und Kaiserschmarrn ab.
 
-```typescript
-enum Cell { Empty, X, O}
+Ein vergilbtes Blatt Papier aus dem Jahre 1995 gibt euch die erste von zehn kleinen Aufgaben, deren Lösungen ihr nacheinander [bei der Museumsdirektorin abgeben](https://forms.gle/4uYoWrBKnfrwuLPT7) müsst, um die nächste Aufgabe zu erhalten. “Wer alle zehn Rätsel löst”, sagt sie, “erhält einen kleinen Pinguinaufkleber”.
 
-const playfield : Cell[][] = [
-    [Cell.Empty, Cell.Empty, Cell.Empty],
-    [Cell.Empty, Cell.Empty, Cell.Empty],
-    [Cell.Empty, Cell.Empty, Cell.Empty]
-]
+<img src="https://lh3.googleusercontent.com/pw/ADCreHesfO6cPCiidOPPFbisYRjmAgW7_6EkZPjFwhgL8qE1HX2EZIJUsoGpVT38BJEUVbc-NiygVgrUmxk8RSGfmJV9yXikapmxvg89qMvC7gKlEx3xw1Fu5_Y2DGsPljRuROxECNKu_VoYZLN_tXe6ju0BqcA_P9brQYIfdfDfvLOWkDeWv0X0ASp7xxd9K6sDzKY1UF6TbCPgKK643bcZIqxcpW5AEKTI8GolSha6D7pW1pBPakwKoi-DjdJWjuc-mQc-Xo2TiO9m8fUC08MS6clFMFg2XHaiePAW-d19xS4c2lmqJiGM12qhPUAKQ3BkR6vvHMU1gzuvF5upG4ygVgkn_Of_9gHOlUyBvzIEp6b_ro2hrAbwHEeTwi8d4mdwFlnPbU_o2xQJbEks8GP-jgMzeMgMbmHljyJ5PXeV4YkQ3aQZUTfWI-KAKcxohOdIEefMV1ivxO95ShyTP_M-3GuK1GV02DSPEQeWnT0mS73FGAKZTZ9B-yFdDzJukmDEvm0t4GVCRhcWfEilm4Y45-SkRsBnApjRxv-L7w0P1oj8cMRondGHexzi0e7eOocKKpqBXKHgmDX19HgYx6UxcNTeT4b7e1tonpiRcV1jE5DVQtrmbsNXH2WOq_CvKmt25hCQVdpfW8-zoUY30XudDpG74vABTa7YjK2vhROzFoieIV4pHqJ5r0zDQDdwsfSJFpVMJT5V_d5vzb-QMKzAczUR8qha9yepSazfL4vcikDhK8b0aKr4XINGMuzVK-w9lKvRi7ZP4m1cDMv6Oct3hD4sLfBdTuNfhmH3k8KJcjnKDGBLXoY5D8v9XFr1bDZWegFn7krrAOS6W6PJiG11vFzBN6GkhX4YnP7ummPU89xhq01WSCjE6CYe9fxB-DwbNYzDEhF_H5qvUhhmoqho_LhgZtYKEaYmQYEg_BMB42Fbz-xzAPl6cqM_oq_636FySQ_veez6CORPGjsNqhgQmc_q_yMxSM9RhdOvrKgm1bDZA0N1prshJEPvJHvODG_NrxDgo_HP48BwW4pcLg=w1920-h886-s-no-gm?authuser=0" alt="img" style="zoom:30%;" />
 
+#### 🪜 Aufgabe
 
-function checkIfWon(field: Cell[][]) {
-    // check rows
-    for (let i = 0; i < 3; i++) {
-        if (field[i][0] == field[i][1] && field[i][1] == field[i][2]) {
-            return field[i][0]      // returns the player who won
-        }
-    }
+Diese Aufgabe soll euch als Kontrast zum mehr oder weniger logischen Python-Syntax davor einige weniger logische *✨ Besonderheiten ✨* der Sprache JavaScript aufzeigen, welche besonders auf Webseiten verwendet wird, um Animationen und interaktive Elemente zu erstellen.
 
-    // check columns
-    for (let i = 0; i < 3; i++) {
-        if (field[0][i] == field[1][i] && field[1][i] == field[2][i]) {
-            return field[0][i]
-        }
-    }
+Ihr erhaltet am Ende dieses Texts die erste Teilaufgabe. Sobald ihr die Lösung (d.h. den Konsolen-Output der `console.log()`-Zeilen) ermittelt habt, könnt ihr diese in ihrer Reinform (d.h. ohne weitere Anführungszeichen davor oder danach, kein “Lösung: ” davor schreiben, etc.) bei der Museumsdirektorin in [diesem Formular](https://forms.gle/4uYoWrBKnfrwuLPT7) abgeben. Sofern eure Antwort richtig ist, erhaltet ihr einen Hinweis, wo auf dem Garchinger Unicampus ihr die nächste Aufgabe findet (das sind physische kleine Zettel, die z.B. hinter einer Heizung oder an anderen unauffälligen Orten hängen). Insgesamt gibt es 10 Teilaufgaben (plus eine Aufgabe 0), d.h. 10 Code-Snippets, die ihr suchen und lösen müsst, um einen Sticker zu erhalten.
 
-    // check diagonal top left to bottom right
-    if (field[0][0] == field[1][1] && field[1][1] == field[2][2]) {
-        return field[0][0]
-    }
+**Wichtig**: Aus technischen Gründen müsst ihr beim erneuten Öffnen des Formulars leider auch alle vorigen Antworten erneut eingeben; merkt euch diese also! Alternativ loggt ihr euch mit eurem Google-Account ein (dieser wird nicht erfasst, speichert aber euren bisherigen Bearbeitungsstatus des Formulars).
 
-    // check diagonal bottom left to top right
-    if (field[0][2] == field[1][1] && field[1][1] == field[2][0]) {
-        return field[0][2]
-    }
-
-    return Cell.Empty   // signals that no player won yet
-}
-
-function prettyPrintArray(field: Cell[][]) {
-    let line = "\n"
-    for (var row of field) {
-        for (var cell of row) {
-            if (cell == Cell.X) {
-                line += "X "
-            } else if (cell == Cell.O) {
-                line += "O "
-            } else {
-                line += "_ "
-            }
-        }
-        line += "\n"
-    }
-    console.log(line)
-}
-
-
-var round : number = 0;
-var currentPlayer : number = 0;
-var newRound = true
-while (true) {
-    if (newRound) {
-        round++
-        currentPlayer = round % 2;
-        console.log("Round " + round)
-
-        prettyPrintArray(playfield)
-    } else {
-        newRound = true
-    }
-
-
-    let cellUserWantsToPlay = prompt("Which cell do you want to play? (Use one digit (0-8) to determine cell or 'q' to quit.)")
-    if (cellUserWantsToPlay != null) {
-        if (cellUserWantsToPlay == "q") {
-            break
-        }
-        if (+cellUserWantsToPlay < 0 || +cellUserWantsToPlay > 8) {
-            alert("Please enter a valid field.")
-            newRound = false
-            continue
-        }
-
-        let row = Math.floor(+cellUserWantsToPlay / 3)
-        let col = +cellUserWantsToPlay % 3
-
-        if (playfield[row][col] != Cell.Empty) {
-            alert("Cell is not empty. Please enter a valid cell position.")
-            newRound = false
-            continue
-        }
-
-        if (currentPlayer == 0) {
-            playfield[row][col] = Cell.O
-        } else {
-            playfield[row][col] = Cell.X
-        }
-        
-        let winner = checkIfWon(playfield)
-        if (winner != Cell.Empty) {
-            alert("Player " + winner + " won!")
-            break
-        }
-    }
-}
+```js
+//Aufgabe 0 (Warm-up)
+console.log("hello");
 ```
 
-#### 🪜 Aufgaben
-
-***Wichtig**: Da viele der folgenden Aufgaben rein konzeptuell und zum Nachdenken sind, gibt es dafür keine Tests, lediglich einige Notizen zur Lösung auf der nächsten Seite.*
-
-1. Führe das Skript ein paar Mal aus.
-   *Damit ihr euch nicht mit nervigem Setup rumschlagen müsst, gibt es den Code auch [hier](https://www.typescriptlang.org/play?#code/KYOwrgtgBAwsA28oG8oFEIAcAuBPANFABqEDyAvgFCUDGA9iAM7ZSbwCGuAZgJYIAmUAFywE8ANoBdKVAC8UcZSjKFcRADoMOAqI1a8hNfE1Y8k-EpXijJ7YbG2Du4-tznLy6w9f29pnTaukpTB1FxgIDTYPAxQNAAWwDQA1gCSXADqDAAUvAIiRlJSAJQoHlAA9BVxiSlQAE50AO6M5Vx09VDZ8MAsPHJQAAwA3FD9ADxQAMyjPADUc6XI5SpjXF158PziPNKDknLym9u74gCMBwBkl1DHO9IXh7d8W-fiAEySSyurKvW9YHqIGeAje+1+lWq-2wgKYUGwiVYHFwwE6TXidCgTQYP2UVFWVHKVRqSWScTo8EgTDaHS6PT6AxGYygkxmYwW3whyh461yL22+3uTzuFyF1xBr1Fu2F-I+0l2nK5q2hsIlAvlwSV+JUhNWxISpKg-B47AA5gx2EhsHRMFAelwWNaoAAjOjYa3Qeo8U3xbDlHkbWWC8GyI6y0WPcUih4HUNquVyxUQlVA+PBzU66h66oGurGs0WpCu910aD2x2Y622r0+v2rAN80GCz4y0ERq43aPnWNh0GfcT7JO-FPAu7NjN4rN-AGpwL+FTExjekCWxjw+LsFggTFsTiorGxFF+wnhSLRWKYaF4AAKXpA2AAgvV6pxG1sCmIil8yqt6XaeCAwADAARAAOiAwE0p02QAG7sJ0jRNFAdDrMcQ6rO00FwZ0NBiMh6yIehXINrhiBPDYRBEUqyjwABQFzPIwFEFAkHUTqUAIIwQEkXhcY2KQVHUbRgFQAxLGkCxuK-OQHHwFxP5sb8wn0YxAD6kmKVA2oQtpSl0aJjHgaxmarPQTAUsA6jwHQprdHRxSUISlDYQ0dARIIIjgBAzr7vIIzOfBcSAv897Xsi+6eZAPmdH5wwBZ0gFNAASm5ICCPI2D1GAwCUOiPA9F0mXZUODaJSl7mCY07kLFJNDBaA2BhXuMWue5UAAKRQO8cVKmZjAWVZNnZMB5VpSxomtWlDlSZevQ3nej7Pq+u7cPyDkErJ8nLEqZWpel8JZTlBLUOUf6kfAACqXH1Bk7D3owAAqdBNbgAyXqWODDRk8Q8AkcR4fwmK4G5WJ3RWSKcAA-F0V1AQwQHGqaPAsNkgwALQABylE6-C9KiED6edyGdAA5AAjiT8KYmTYDI+oxTAetKg8YgsM3WDj3PciUAAITyOAiCCSzl3Xbd91PS9TzAWTjMKWxzr-OwyRSbp9a8nM51s2L2Cc5LkyDFAAA+huiZroscxL3MAHxQFjcvUZaqLYMNYXAOw8kNfu7BQHBtGCMc6iM1Jqy7W1RyrkdilmdE4CRzpU4Qn+iEDAAspu8TqFw1kdNkGtiFrFtc5wlTTEzie9OSSDyHnrPm+LRevZ1UwJ78DYrXciHSPQ8AHHzziOLggmrI79TO8BRhjGu24sMA-jqFArvu0BnudN7vs8IIROYHQS7niAgdl9RodjeHclx9R0cAdlKst2rXR1c+DUvb5flDyo7eyp34jd7G-ekCrm0gLbUUh-UEX8f4DAojfJUUk-xNAAoBFquY0iZByKArYh877ZHgSARBvN5Bzm0G-ZQI8x7P06MBCaOC8FzHGtiEAPMg6aQVm7ZWWpyhUHIEAA) im TypeScript Playground, das im Browser läuft.*
-2. Schau dir das TypeScript an und versuche, den Code zu verstehen. Was fällt dir auf? Was ist gleich, was ist anders als in Java?
-3. Versuche, den Code in Java umzusetzen. Was geht dabei in Java einfacher, was in TypeScript?
 
 
+<u>Hinweis</u>: Ihr solltet euch über die Aufgaben zunächst selbst Gedanken machen. Falls ihr jedoch an einer Stelle nicht weiterkommt, könnt ihr den JavaScript-Code in eurem Browser testen. Drückt dafür `Strg+Shift+J` bzw. `Cmd+Option+J` oder öffnet den Inspector mit `F12` und geht danach zum Tab `Console` (bzw. `Konsole`). Dort könnt ihr den Code einfach eingeben und erhaltet den Output der `console.log()`-Zeilen.
+
+
+
+---
+
+### Anmerkung
+
+_Anmerkung_: Eigentlich hatten wir hier noch eine dritte Aufgabe geplant - leider eignen sich nicht alle Programmiersprachen gleich gut für diese Aufgabe und Tutoruine kennen auch nur begrenzt viele Sprachen. Solltest du allerdings noch Ideen haben, welches Beispiel wir hier für die kommenden Jahre ergänzen könnten, schreib uns eine Mail oder Zulip-Nachricht: eric.jacob.2003@gmail.com.
 
 
 
@@ -417,3 +329,7 @@ https://www.essen-und-trinken.de/rezepte/59961-rzpt-lachsfilet-mit-spekulatiuskr
 ### Das Lachskekse-Rezept
 
 https://www.falstaff.com/de/rezepte/kochen/lachskekse
+
+### Eine Liste weiterer *interessanter* Eigenheiten von JavaScript
+
+https://github.com/denysdovhan/wtfjs
