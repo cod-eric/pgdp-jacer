@@ -1,3 +1,4 @@
-/.idea/
+*.idea/
 /F01 Brainfuck/BrainfuckInterpreter/BrainfuckInterpreter.iml
 /F01 Brainfuck/BrainfuckInterpreter/solution/solution.iml
+out
