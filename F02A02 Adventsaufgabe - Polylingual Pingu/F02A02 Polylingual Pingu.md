@@ -2,8 +2,8 @@
 
 🎁 _Als besonderes Weihnachtsgeschenk: Eine **Schnitzeljagd** durch das MI inklusive, siehe Teil 2_
 
-> Diese Aufgabe ist Teil der freiwilligen inoffiziellen Zusatzaufgaben von Eric Jacob und Jonas Wende, erstellt im WS 23/24 für *IN0002: Grundlagenpraktikum Programmierung*.
-> Weder sind sie durch die ÜL überprüft, noch unbedingt vollständig richtig. Fehler gerne melden: https://github.com/cod-eric/pgdp-jacer/issues/new
+> Diese Aufgabe ist Teil der freiwilligen inoffiziellen Zusatzaufgaben von Eric Jacob, Jonas Wende und Ellen Esther Angnis, erstellt im WS 23/24 für *IN0002: Grundlagenpraktikum Programmierung*.
+> Weder sind sie durch die ÜL überprüft, noch unbedingt vollständig richtig. Fehler gerne melden: https://github.com/cod-eric/pgdp-jacer/issues/new.
 
 > 🎄 *Advent, Advent, ein Server brennt*… oder so. Vorweihnachtlich gibt es jeden Adventssonntag eine freiwillige inoffizielle Zusatzaufgabe, die über den Inhalt von PGdP hinausgehen und euch einige Programmierkonzepte zeigen sollen, die ihr so in PGdP nicht lernt.
 
@@ -11,7 +11,7 @@
 
 ## 🎯 Lernziele
 
-In dieser Aufgabe lernt ein paar Besonderheiten zweier weiterer Sprachen neben Java kennen - und, dass ihr die meisten Programmiersprachen mit eurem Java-Wissen verstehen könnt, auch wenn ihr noch nie zuvor in diesen programmiert habt.
+In dieser Aufgabe lernt ein paar Besonderheiten dreier weiterer Sprachen neben Java kennen - und, dass ihr die meisten Programmiersprachen mit eurem Java-Wissen verstehen könnt, auch wenn ihr noch nie zuvor in diesen programmiert habt.
 
 ## 📜 Backstory
 
@@ -182,7 +182,7 @@ while visitor_still_watching:
 lediglich einige Notizen zur Lösung auf der nächsten Seite.*
 
 1. Führe das Skript ein paar Mal aus.
-   *Damit ihr euch nicht mit nervigem Setup rumschlagen müsst, gibt es den Code auch [hier](https://replit.com/@EricJacob/F02A02-Wurgeschlangen?v=1) als Repl, das im Browser läuft.*
+   *Damit ihr euch nicht mit Python-Setup rumschlagen müsst, gibt es den Code auch [hier](https://replit.com/@EricJacob/F02A02-Wurgeschlangen?v=1) als Repl, das im Browser läuft. Ihr müsst über dem Aufgabennamen auf "Fork" drücken, damit das Repl in euren eigenen Workspace kopieren und dort ausführen.*
 2. Schau dir den Python-Code an und versuche, ihn zu verstehen. Was fällt dir auf? Was ist gleich, was ist anders als in Java?
 3. Für Rückgaben und Parameter bei Funktionen und Methoden muss man in Python eigentlich keine types angeben – warum kann das trotzdem sinnvoll sein?
 4. **[Optional]** Versuche, den Python-Code in Java umzusetzen. Was geht dabei in Java einfacher, was in Python?
@@ -220,7 +220,7 @@ lediglich einige Notizen zur Lösung auf der nächsten Seite.*
             ```py
           print("Der Wert ist " + 23)  # Fehler, da man auf strs nicht addieren kann
             print("Der Wert ist " + str(23))  # korrekt
-            ```
+          ```
         
         - In Klassen müssen Attribute nicht zu Beginn der Klasse deklariert werden. Üblicherweise werden diese im Konstruktor (`__init__()`) erstellt. Auch muss jeder Methode einer Klasse `self`, also die Referenz auf das zu bearbeitende Objekt (ähnlich zu `this` in Java) mitgegeben werden.
         
@@ -283,9 +283,9 @@ interaktiven Mitmachspiel an der Wand, einer JavaScript-Schnitzeljagd, passt? �
 
 Etwas verunsichert betretet ihr den Raum. Links und rechts wird der Raum von beleuchteten Vitrinen gesäumt, welche verschiedenste abstruse Konstruktionen und Kunstinstallationen beherbergen; besonders viele bilden Schnitzel, Klöße, Tafelspitz und Kaiserschmarrn ab.
 
-Ein vergilbtes Blatt Papier aus dem Jahre 1995 gibt euch die erste von zehn kleinen Aufgaben, deren Lösungen ihr nacheinander [bei der Museumsdirektorin abgeben](https://forms.gle/4uYoWrBKnfrwuLPT7) müsst, um die nächste Aufgabe zu erhalten. “Wer uns hilft, alle zehn Rätsel zu lösen”, sagt sie, “erhält ein ganz besonderes Pinguin-Ehrenbanner”.
+Ein vergilbtes Blatt Papier aus dem Jahre 1995 gibt euch die erste von zehn kleinen Aufgaben, deren Lösungen ihr nacheinander [bei der Museumsdirektorin abgeben](https://forms.gle/4uYoWrBKnfrwuLPT7) müsst, um die nächste Aufgabe zu erhalten. “Wer uns hilft, alle zehn Rätsel zu lösen”, sagt sie, “erhält ein ganz besonderes Pinguin-Ehrenbanner”:
 
-<img src="/F02A02 Polylingual Pingu.assets/pingusticker.jpg" alt="img" style="zoom:15%;" />
+<img src="F02A02 Polylingual Pingu.assets/pingusticker.jpg" alt="A0" style="zoom:15%;" />
 
 #### 🪜 Aufgabe
 
@@ -307,12 +307,187 @@ Hier findet ihr das erste Snippet:
 
 
 
----
+## Teil 3: 🐠 Abteilung für die Historie des pinguin'schen Fischhandels - Octave
 
-### Anmerkung
+Nach der vielen Bewegung durch das MI-Gebäude gibt es im nächsten Raum wieder etwas mehr Denkanspruch für die kleinen Pinguine - und mathematischen noch dazu. (Danke an eine anonyme Mathuinin für die Aufgabe 🐧.)
 
-_Anmerkung_: Eigentlich hatten wir hier noch eine dritte Aufgabe geplant - leider eignen sich nicht alle
-Programmiersprachen gleich gut für diese Aufgabe und Tutoruine kennen auch nur begrenzt viele Sprachen. Solltest du allerdings noch Ideen haben, welches Beispiel wir hier für die kommenden Jahre ergänzen könnten, schreib uns eine Mail oder Zulip-Nachricht: eric.jacob.2003@gmail.com.
+In alten Dokumenten sind die ersten Handelsversuche früher Pinguine niedergeschrieben. Die Pinguine dokumentierten den Fischbedarf einer Region mittels Karten. Eine alte Liste von Händlerpinguinen zeigt, wie viel Fisch diese jeweils transportieren konnten. Die Pinguine konnten auch miteinander kooperieren, um mehr Fisch auszuliefern.
+
+Im Vorweihnachtsgeschäft steigt der Fischbedarf in der Region mit der Zeit, was im folgenden Programm in der Programmiersprache Octave simuliert wird.
+
+Die Manuskripte seht ihr hier:
+
+```octave
+%%%%%%%%%%
+% Main.m %
+%%%%%%%%%%
+
+% cleaning up the workspace
+clear
+clear classes
+
+% initialisation of the pingutraders
+ntraders = 20;
+map =  ones(10,20);
+for i = 1:ntraders
+  traderlist(i) = pingutraders(1,5);
+end
+
+% choose which penguins to merge into a new penguin with more capacity
+while(true)
+  disp("Your current penguins are: \n")
+  for i = 1:length(traderlist)
+    dispPingutraders(traderlist(i));
+  end
+
+  response = input("Merge two penguins [0] or continue with the fish delivery?\n");
+  if(response ~= 0)
+    break;
+  end
+
+  i = input("Input first index to merge: \n");
+  j = input("Input second index to merge: \n");
+
+  if(i==j)
+    disp("You cannot merge a penguin with itself! \n");
+  elseif(i<=length(traderlist) &j<=length(traderlist) &
+  0<i & 0<j)
+    coopPengu = cooperate(traderlist(i), traderlist(j));
+    traderlist(i) = coopPengu;
+    traderlist = traderlist(1:length(traderlist)~=j);
+  else
+    disp("Pengu-Index out of bounds\n");
+  end
+end
+
+
+% delivery cycle of the pingutraders
+while (true)
+  for i = 1:length(traderlist)
+    map = deliverFish(traderlist(i),map);
+  end
+
+  disp(map);
+  disp("Your current traders are: \n")
+  for i = 1:length(traderlist)
+    dispPingutraders(traderlist(i))
+  end
+
+  response = input("Input options are to continue [0] or quit [1] \n");
+  switch response
+    case 0
+      continue;
+    case 1
+      break;
+    otherwise
+      error("Invalid input");
+  end
+
+  map+1;
+end
+```
+
+```octave
+%%%%%%%%%%%%%%%%%%
+% pingutraders.m %
+%%%%%%%%%%%%%%%%%%
+
+classdef pingutraders
+  properties (Access = private)
+    Capacity
+    Health
+  end
+
+  methods (Access = public)
+    function obj = pingutraders(Capacity, Health)
+    % Constructor for pingutraders, takes a Capacity, Health Points of the trader
+      obj.Capacity = Capacity;
+      obj.Health = Health;
+    end
+
+    function map = deliverFish(obj, map)
+    % a penguintrader either tries to deliverFish or recovers health points
+      filtered = map;
+      filtered(filtered>obj.Capacity) = 0;
+
+
+      if(any(filtered))
+        [x,y] = find(filtered);
+        i = randi(length(x));
+        map(x(i),y(i)) = 0;
+        obj.Health -= randi(obj.Health);
+      else
+        obj.Health += randi(20);
+      end
+    end
+
+    function obj = cooperate(obj, other)
+    % lets to penguins cooperate to increase their capacity
+      obj.Health += other.Health;
+      obj.Capacity += other.Capacity;
+    end
+
+    function dispPingutraders(obj)
+      fprintf("Capacity: %d, Health: %d \n", obj.Health, obj.Capacity);
+    end
+  end
+end
+```
+
+In Octave gibt es einige besondere Schreibweisen, um Arrays/Listen zu bearbeiten, welche auch im Code verwendet werden. Versuche diese zu verstehen und überlege dir, wie du sie in Java umsetzen würdest!
+
+Im Unterschied zu Java wird Octave primär in der Mathematik eingesetzt — dementsprechend lassen sich hiermit vor allem Berechnungen durchführen und Ergebnisse als Plots visualisieren.
+
+Aufgelistet findet ihr hier dementsprechend einige Besonderheiten, die es bei Octave zu beachten gilt:
+
+- Per default werden Zahlen in Octave als Array von `double`-Werten gespeichert. Genauer handelt es sich dabei um zweidimensionale Matrizen, diese kennt ihr vielleicht noch aus W06H04. Uns reicht es, sie als 2D-Arrays zu betrachten, wobei jedes innere Array die gleiche Anzahl an Elementen besitzt.
+
+  *Vergleich zu Java:*
+
+  ```java
+  int[][] array1 = new int[4][];		// die inneren Arrays können verschiedene Längen haben
+  int[][] array2 = new int[4][5];		// die inneren Arrays haben alle Länge 5
+  ```
+
+  Eine "gewöhnliche Zahl" wäre also ein $1\times 1$-`double`-Array, ein "gewöhnliches eindimensionales Array" mit $n$ Elementen ist damit ein $1\times n$-Array.
+
+- Beim Indizieren der Arrays beginnt man mit 1 (statt wie in der Informatik üblich mit 0).
+
+- For-Schleifen sind denen in Python ähnlich: es gibt eine Laufvariable und eine Liste, über die gelaufen wird (`for i in range(4)` erstellt in Python intern eine Liste `[0, 1, 2, 3]` und entnimmt nach und nach dessen Werte für `i`).
+
+  In Octave sieht das so aus: `for i = 1:ziel` und entspricht in Java: `for (int i = 1; i <= ziel; i++)`.
+
+- Semikolons sind optional und werden lediglich dafür benötig, die Ausgabe einer Variable auf der Konsole zu unterdrücken.
+
+- Es gibt besondere Funktionen, die ein Array bestimmter Form zurückgeben; so gibt etwa `ones(m,n)` ein $m\times n$-Array gefüllt mit Einsen zurück - analog für `zeros(m,n)`. `randi(i,m,n)` gibt ein $m\times n$-Array mit zufälligen ganzzahligen Einträgen zurück.
+
+  Für ein 2D-Array gibt `array(:)` die einzelnen Subarrays aneinandergereiht zurück.
+
+- Manche Operationen auf einzelnen Zahlen lassen sich hier auch auf ganze Arrays anwenden: `array + 1` entspricht der Addition von $1$ auf jedes Element von `array`. Auch Vergleiche lassen sich mit Arrays durchführen. `array==0` gibt ein Array zurück, das eine $1$ an allen Indizes erhält, welche den Ausdruck erfüllen; die restlichen Einträge sind $0$. Diese können dazu verwendet werden, genau die Einträge zu indizieren, welche die Bedingung erfüllen.
+
+- Arrays lassen sich auch durch Arrays indizieren. So ergibt `array(1:4)` etwa die ersten vier Elemente von `array` (in Python würde man hierfür *slicing* verwenden: `array[1:4]`).
+
+- `any(array)` gibt zurück, ob mindestens eines der Elemente in einem Array ungleich $0$ ist. `find(array)` gibt genau die Indizes zurück, die nicht $0$ sind.
+
+
+
+Octave ist nicht grundsätzlich objektorientiert; es gibt dennoch die Möglichkeit, eigene Klassen zu erstellen:
+
+- Attribute werden nach `properties` aufgezählt, Methoden nach `methods`. Sie haben die Form `function res = functionname(param)`; `res` ist dabei der Rückgabewert als Variable. Die Variable kann innerhalb der Methode mehrmals geändert werden, zurückgegeben wird dann der letzte Wert der Variable innerhalb der Funktion.
+
+- Die Notation `obj.methode();` wird in Octave zu `methode(obj)`, das aufrufende Objekt wird also immer als erster Parameter übergeben (ähnlich zu Python - hier ist das erste Argument stets `self`).
+
+
+
+#### 🪜 Aufgaben
+
+***Wichtig**: Da viele der folgenden Aufgaben rein konzeptuell und zum Nachdenken sind, gibt es dafür keine Tests.*
+
+1. Führe das Skript ein paar Mal aus. Dafür müsst ihr sie forken - im [Repl](https://replit.com/@EricJacob/F02A02-Pingutraders?v=1) über dem Aufgabennamen auf "Fork" drücken, in eure eigenen Repls speichern und dort ausführen.
+2. Schau dir den Octave-Code an und versuche, ihn zu verstehen. Was fällt dir auf? Was ist gleich, was ist anders als in Java?
+3. **[Optional]** Versuche, den Octave-Code in Java umzusetzen. Was geht dabei in Java einfacher, was in Octave?
+
+
 
 ## 🗃️ Anhang
 
