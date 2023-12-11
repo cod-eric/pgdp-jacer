@@ -18,7 +18,7 @@ public class Scheduler extends OEPNVEmployee implements MakeAnnouncements {
         for (Line l : linesInMunich) {
             sb.append(l).append(": -START- ");
             for (int i = 0; i < random.nextInt(trackSegments.length); i++) {
-                sb.append(Arrays.toString(trackSegments[i].coordinates)).append(", ");
+                sb.append(Arrays.toString(trackSegments[i].getCoordinates())).append(", ");
             }
             sb.append(" -END-\n");
         }
@@ -28,6 +28,6 @@ public class Scheduler extends OEPNVEmployee implements MakeAnnouncements {
     public Line establishReplacementService(Line l) {
         Random random = new Random();
         System.out.println("Due to a delay on line " + l + ", we will establish a bus replacement.");
-        return Bus.values()[random.nextInt(Bus.values().length)];
+        return BusLine.values()[random.nextInt(BusLine.values().length)];
     }
 }
