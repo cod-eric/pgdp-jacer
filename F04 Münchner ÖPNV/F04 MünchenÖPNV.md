@@ -50,7 +50,11 @@ Ein Fahrer ist ein `OEPNVEmployee`, kann Announcements machen und besitzt potenz
 
 #### Scheduler
 
-Ein Scheduler kann Netzpläne erstellen (`createNetPlan(Line[], TrackSegment[])`) und gibt den erstellten Netzplan als `String` zurück. Außerdem kann ein Scheduler im Falle einer Störung Schienenersatzverkehr mit Bussen veranlassen (`establishReplacementService(Line): Line`). Dafür muss er die betroffene Linie kennen und gibt die Linie, die den SEV übernimmt, zurück.
+Ein `Scheduler` ist ein `OEPNVEmployee`, kann Netzpläne erstellen (`createNetPlan(Line[], TrackSegment[])`) und gibt den erstellten Netzplan als `String` zurück. Außerdem kann ein `Scheduler` im Falle einer Störung Schienenersatzverkehr mit Bussen veranlassen (`establishReplacementService(Line): Line`). Dafür muss er die betroffene Linie kennen und gibt die Linie, die den SEV übernimmt, zurück.
+
+#### TicketInspector
+
+Ein `TicketInspector`
 
 #### Hilfsklassen und co
 
