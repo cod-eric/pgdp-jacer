@@ -1,11 +1,13 @@
+package oepnv;
+
 public class Bus extends Vehicle {
-    public Bus(Line line) {
-        super(line);
+    public Bus(LineNumber lineNumber) {
+        super(lineNumber);
     }
 
     @Override
     public void move() {
-        System.out.println("Bus vrooms.");
+        System.out.println("oepnv.Bus vrooms.");
     }
 
     @Override
@@ -19,6 +21,6 @@ public class Bus extends Vehicle {
     }
 
     public void lowerRightSide() {
-        System.out.println("Bus lowers right side for passengers to enter.");
+        System.out.println("oepnv.Bus lowers right side for passengers to enter.");
     }
 }

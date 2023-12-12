@@ -1,10 +1,12 @@
+package oepnv;
+
 import java.util.Objects;
 
 public class SBahn extends Vehicle {
     public String model;
 
-    public SBahn(Line line, String model) {
-        super(line);
+    public SBahn(LineNumber lineNumber, String model) {
+        super(lineNumber);
         this.model = model;
     }
 

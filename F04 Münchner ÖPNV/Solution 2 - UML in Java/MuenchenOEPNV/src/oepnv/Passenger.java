@@ -1,3 +1,5 @@
+package oepnv;
+
 public class Passenger extends Human {
     private boolean sitting;
     private boolean hasValidTicket;

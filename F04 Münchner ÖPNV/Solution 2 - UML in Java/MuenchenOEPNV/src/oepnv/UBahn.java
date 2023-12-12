@@ -1,8 +1,10 @@
+package oepnv;
+
 public class UBahn extends Vehicle {
     public String model;
 
-    public UBahn(Line line, String model) {
-        super(line);
+    public UBahn(LineNumber lineNumber, String model) {
+        super(lineNumber);
         this.model = model;
     }
 

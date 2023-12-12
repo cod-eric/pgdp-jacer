@@ -1,3 +1,5 @@
+package oepnv;
+
 import java.util.Objects;
 
 public class Driver extends OEPNVEmployee implements MakeAnnouncements {
@@ -9,7 +11,7 @@ public class Driver extends OEPNVEmployee implements MakeAnnouncements {
     }
 
     public void drive(Vehicle v) {
-        System.out.println(name + " is now driving a " + v.getLINE());
+        System.out.println(name + " is now driving a " + v.lineNumber);
     }
 
     @Override
@@ -22,7 +24,7 @@ public class Driver extends OEPNVEmployee implements MakeAnnouncements {
         System.out.println("Attention U-Bahn passengers: " + message);
     }
 
-    public boolean isLicensedFor(Line l) {
+    public boolean isLicensedFor(LineNumber l) {
         for (DriverLicense dl : driverLicenses) {
             if (Objects.equals(dl.toString().split("L")[0], l.toString().split("L")[0])) {
                 return true;

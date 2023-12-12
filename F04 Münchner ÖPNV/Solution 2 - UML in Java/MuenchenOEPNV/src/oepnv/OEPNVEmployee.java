@@ -1,3 +1,5 @@
+package oepnv;
+
 public abstract class OEPNVEmployee extends Human {
     private int salary;
 

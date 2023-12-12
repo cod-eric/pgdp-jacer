@@ -1,3 +1,5 @@
+package oepnv;
+
 public class TicketInspector extends OEPNVEmployee implements MakeAnnouncements {
     private int numberOfFinesHandedOut;
 

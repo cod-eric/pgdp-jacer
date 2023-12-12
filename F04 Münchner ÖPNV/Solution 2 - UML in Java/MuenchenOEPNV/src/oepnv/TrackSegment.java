@@ -1,10 +1,12 @@
+package oepnv;
+
 public class TrackSegment {
-    private Line trackType;
+    private LineNumber trackType;
     private double width;
     private double length;
     private double[] coordinates;
 
-    public TrackSegment(Line trackType, double width, double length, double[] coordinates) {
+    public TrackSegment(LineNumber trackType, double width, double length, double[] coordinates) {
         this.trackType = trackType;
         this.width = width;
         this.length = length;

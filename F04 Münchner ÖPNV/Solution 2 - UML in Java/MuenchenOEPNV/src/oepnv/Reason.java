@@ -1,3 +1,5 @@
+package oepnv;
+
 public enum Reason {
     VERDI_STRIKE,
     GDL_STRIKE,

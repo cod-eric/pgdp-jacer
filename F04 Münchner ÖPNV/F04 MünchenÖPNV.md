@@ -30,7 +30,11 @@ Ziel dieser Aufgabe ist es, Vererbung und UML-Diagramme zu wiederholen. Der tats
 
 > Eigentlich war der Plan, eure fertige Klassenstruktur mit dem Anfragen der MVG-API zu testen, aber da ihr mit diesen Daten auch nicht viel machen außer anzeigen könntet, haben wir uns dazu entschieden, mehr auf Übung anstatt praktische Anwendung zu setzen — vielleicht kommt das Feature ja noch irgendwann dazu (solltet ihr dazu motiviert sein, erstellt gerne eine Pull Request :) ).
 
+<u>Hinweis</u>: Wir betrachten — wie bei Vererbung üblich — nur einen Ausschnitt des Münchner Verkehrsnetzes. Größtenteils beschränken wir uns dabei auf Verkehrsmittel, die zwischen Flughafen und Forschungszentrum eine sinnvolle Verbindung darstellen (dementsprechend verzichten wir auf Trams und erlauben auch nicht alle 87 Busse, die in und um München verkehren).
+
 *Lies die folgende Beschreibung am besten erst einmal vollständig durch, bevor du mit der Implementation beginnst.*
+
+
 
 Grundlegend ist der Münchner Nahverkehr in unserer Miniwelt in drei Kategorien unterteilt: Mitarbeiter/Passagiere, Fahrzeuge und Straßen/Schienen.
 
@@ -42,7 +46,7 @@ Alle Menschen haben einen Namen und ein Alter — auf beide können auch die "ko
 
 #### OEPNVEmployee
 
-Jeder Mitarbeiter des ÖPNV hat ein Gehalt, das er jedoch lieber geheim hält. Zudem hat er die Möglichkeit zu streiken — wie genau ein solcher Streik aussieht, hängt jedoch immer vom konkreteren Beruf ab.
+Jeder Mitarbeiter des ÖPNV hat ein Gehalt, das er jedoch lieber geheim hält. Zudem hat er die Möglichkeit zu streiken — wie genau ein solcher Streik aussieht, hängt jedoch immer vom konkreteren Beruf ab. Auch hier gilt: es gibt keine reinen `OEPNVEmployees`.
 
 #### Driver
 
@@ -50,17 +54,17 @@ Ein Fahrer ist ein `OEPNVEmployee`, kann Announcements machen und besitzt potenz
 
 #### Scheduler
 
-Ein `Scheduler` ist ein `OEPNVEmployee`, kann Netzpläne erstellen (`createNetPlan(Line[], TrackSegment[])`) und gibt den erstellten Netzplan als `String` zurück. Außerdem kann ein `Scheduler` im Falle einer Störung Schienenersatzverkehr mit Bussen veranlassen (`establishReplacementService(Line): Line`). Dafür muss er die betroffene Linie kennen und gibt die Linie, die den SEV übernimmt, zurück.
+Ein `Scheduler` ist ein `OEPNVEmployee`, kann Netzpläne erstellen (`createNetPlan(Line[], TrackSegment[])`) und gibt den erstellten Netzplan als `String` zurück. Außerdem kann ein `Scheduler` im Falle einer Störung Schienenersatzverkehr mit Bussen veranlassen (`establishReplacementService(Line): Line`). Dafür muss er die betroffene Linie kennen und gibt die Linie, die den SEV übernimmt, zurück. Zudem hat er der Fähigkeit, Announcements zu machen.
 
 #### TicketInspector
 
-Ein `TicketInspector`
+Ein `TicketInspector` ist natürlich ein `OEPNVEmployee` und schreibt sich für den Privatgebrauch auf, wie viele Strafen wegen Schwarzfahren in seiner gesamten beruflichen Laufbahn er bereits verteilt hat. Außerdem kann er in Fahrzeugen Ticketkontrollen durchführen (`inspectTickets(Vehicle)`) und gibt dabei die Anzahl an Schwarzfahrern bei dieser Kontrolle zurück. Außerdem kündigt er beim Betreten eines Fahrzeugs stets an, dass die Fahrgäste bitte ihre Tickets raussuchen sollen, um die Kontrolle zu beschleunigen.
 
 #### Hilfsklassen und co
 
 ##### DriversLicense
 
-Dieses Enum speichert die möglichen Führerscheine für U-Bahn (`UBahnLicense`), S-Bahn (`SBahnLicense`), Tram (`TramLicense`) und Bus (`BusLicense`), die ein `Driver` haben kann.
+Dieses Enum speichert die möglichen Führerscheine für U-Bahn (`U_BAHN_LICENSE`), S-Bahn (`S_BAHN_LICENSE`) und Bus (`BUS_LICENSE`), die ein `Driver` haben kann.
 
 ##### MakeAnnouncements
 
