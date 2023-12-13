@@ -1,4 +1,4 @@
-package oepnv.Stations;
+package oepnv.stations;
 
 public enum X201Station implements BusStation {
     DACHAU_BAHNHOF,

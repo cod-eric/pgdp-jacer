@@ -208,25 +208,25 @@ lediglich einige Notizen zur Lösung auf der nächsten Seite.*
         - Keine runden Klammern um Statements bei `if`, `for`, `while`
 
         - Die `for`-Schleife nimmt eine `range` entgegen - aus `for (int i = 0; i < ziel; i++)` wird `for i in range(ziel)`.
-          
+        
     - Die `enhanced for`-Schleife kann mit `in` direkt alle Werte aus Listen nehmen: `for (element : liste)` wird zu `for element in liste`.
           
         - Python hat kein Prä-/Postinkrement/-dekrement – das kürzeste Mögliche ist `+=` bzw `-=`.
 
         - User input (und auch Dateien lesen/schreiben, hier nicht gezeigt) ist deutlich einfacher. Statt `Scanner`-Objekte erstellen zu müssen und Fehler abzufangen schreibt man einfach `variable = input()` und bekommt einen String zurück.
-      
+        
         - Datentypen-Umwandlung ist einfacher; statt `Integer.parseInt("23")` schreibt man `int("23")`. Umgekehrt kann z.B. die `print`-Funktion nur mit `str`s umgehen:
           
             ```py
-        print("Der Wert ist " + 23)  # Fehler, da man auf strs nicht addieren kann
+          print("Der Wert ist " + 23)  # Fehler, da man auf strs nicht addieren kann
             print("Der Wert ist " + str(23))  # korrekt
             ```
-      
+        
         - In Klassen müssen Attribute nicht zu Beginn der Klasse deklariert werden. Üblicherweise werden diese im Konstruktor (`__init__()`) erstellt. Auch muss jeder Methode einer Klasse `self`, also die Referenz auf das zu bearbeitende Objekt (ähnlich zu `this` in Java) mitgegeben werden.
         
     - Es gibt keine alles umschließende Klasse und keine `main`-Methode, die bei Programmstart aufgerufen wird. Python ist eine sogenannte Skriptsprache, die zwar Objektorientierung bietet, aber nicht vorschreibt. Beim Ausführen wird einfach Zeile für Zeile des Programms ausgeführt.
       In Java dagegen muss alles in einer Klasse passieren. Weniger Objektorientierung hat auch zur Folge, dass man nicht wie in Java erst aus der Klasse `System` das Attribut `out` wählen muss, um darauf `println()` auszuführen - man kann einfach `print()` schreiben.
-  
+    
     - Allgemein werden keine Datentypen wie `int`, `String`, etc beim Erstellen einer Variable angegeben. Python wählt automatisch einen passenden Typ und passt intern auch die Größe beliebig an (es gibt also keine Probleme wie in Java, dass eine Zahl nicht in einen `short` passt und abgeschnitten wird). Man kann mit `variable: datatype` zwar explizite *type annotation* vorgeben (statt `variable = "Hi"` also `variable: str = "Hi"`), muss dies aber nicht.
       Das hat auch zur Folge, dass z.B. folgender Code keinen Fehler wirft:
       
@@ -239,13 +239,13 @@ lediglich einige Notizen zur Lösung auf der nächsten Seite.*
         
     variable = []
         print(type(variable))	# gibt `list` aus
-        ```
-      
+    ```
+    
       oder auch innerhalb einer Liste (das Python-Äquivalent zu Arrays, allerdings ohne fixe Länge und ohne fixen Datentyp):
-      
+    
     ```py
         liste = ["Hallo", 6.5, [9]]
-        ```
+    ```
     
     - Python wird im Gegensatz zu Java beim Ausführen nicht *kompiliert*, sondern *interpretiert*. Darum muss – im Gegensatz zu Java – alles im Code definiert werden, *bevor* es verwendet werden kann. Beispiel:
       
@@ -254,7 +254,7 @@ lediglich einige Notizen zur Lösung auf der nächsten Seite.*
         
         def fkt(zahl):
             return zahl + 2
-    
+        
         print(fkt(2))	# funktioniert
         ```
 

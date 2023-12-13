@@ -1,4 +1,4 @@
-package oepnv.LineNumbers;
+package oepnv.linenumbers;
 
 import oepnv.LineNumber;
 

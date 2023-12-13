@@ -1,12 +1,12 @@
 package oepnv;
 
 public class TrackSegment {
-    private LineNumber trackType;
+    private Vehicle trackType;
     private double width;
     private double length;
     private double[] coordinates;
 
-    public TrackSegment(LineNumber trackType, double width, double length, double[] coordinates) {
+    public TrackSegment(Vehicle trackType, double width, double length, double[] coordinates) {
         this.trackType = trackType;
         this.width = width;
         this.length = length;
@@ -15,5 +15,9 @@ public class TrackSegment {
 
     public double[] getCoordinates() {
         return coordinates;
+    }
+
+    public static boolean vehicleCanUseSegment(Vehicle v, TrackSegment segment) {
+        return v.getClass() == segment.trackType.getClass();
     }
 }

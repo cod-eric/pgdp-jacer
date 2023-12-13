@@ -1,7 +1,7 @@
 package oepnv;
 
-import oepnv.LineNumbers.BusLineNumber;
-import oepnv.LineNumbers.SBahnLineNumber;
+import oepnv.linenumbers.BusLineNumber;
+import oepnv.linenumbers.SBahnLineNumber;
 
 import java.util.Collection;
 import java.util.Date;

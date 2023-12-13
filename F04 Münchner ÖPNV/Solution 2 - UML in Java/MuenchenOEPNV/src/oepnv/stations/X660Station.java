@@ -1,4 +1,4 @@
-package oepnv.Stations;
+package oepnv.stations;
 
 public enum X660Station implements BusStation {
     FREISING_WEIHENSTEPHAN,

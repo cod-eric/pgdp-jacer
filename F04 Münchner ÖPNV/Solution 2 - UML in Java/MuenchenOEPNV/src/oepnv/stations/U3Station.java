@@ -1,4 +1,4 @@
-package oepnv.Stations;
+package oepnv.stations;
 
 public enum U3Station implements UBahnStation {
     MOOSACH,

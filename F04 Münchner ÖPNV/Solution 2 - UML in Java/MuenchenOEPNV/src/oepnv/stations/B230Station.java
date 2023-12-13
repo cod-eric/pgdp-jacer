@@ -1,4 +1,4 @@
-package oepnv.Stations;
+package oepnv.stations;
 
 public enum B230Station implements BusStation {
     ISMANING,

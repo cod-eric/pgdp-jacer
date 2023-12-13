@@ -1,4 +1,4 @@
-package oepnv.Stations;
+package oepnv.stations;
 
 public enum S8Station implements SBahnStation {
     FLUGHAFEN_MUENCHEN,

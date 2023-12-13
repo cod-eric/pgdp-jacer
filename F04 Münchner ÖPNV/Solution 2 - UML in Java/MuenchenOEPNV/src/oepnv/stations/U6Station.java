@@ -1,4 +1,4 @@
-package oepnv.Stations;
+package oepnv.stations;
 
 public enum U6Station implements UBahnStation {
     GARCHING_FORSCHUNGSZENTRUM,

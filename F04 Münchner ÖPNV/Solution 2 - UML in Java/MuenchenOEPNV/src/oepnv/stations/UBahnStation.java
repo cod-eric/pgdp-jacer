@@ -1,4 +1,4 @@
-package oepnv.Stations;
+package oepnv.stations;
 
 import oepnv.Station;
 

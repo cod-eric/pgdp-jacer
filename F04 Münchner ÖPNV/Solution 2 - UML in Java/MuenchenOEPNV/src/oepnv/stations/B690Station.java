@@ -1,4 +1,4 @@
-package oepnv.Stations;
+package oepnv.stations;
 
 public enum B690Station implements BusStation {
         ECHING_BLUETENSTRASSE,

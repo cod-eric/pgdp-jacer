@@ -1,4 +1,4 @@
-package oepnv.Stations;
+package oepnv.stations;
 
 public enum U2Station implements UBahnStation {
     FELDMOCHING,

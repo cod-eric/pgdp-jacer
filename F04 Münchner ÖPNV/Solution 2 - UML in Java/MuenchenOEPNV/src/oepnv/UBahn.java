@@ -15,7 +15,7 @@ public class UBahn extends Vehicle {
 
     @Override
     public void openDoors() {
-        System.out.println(super.getLINE() + ", bitte einsteigen.");
+        System.out.println(super.lineNumber + ", bitte einsteigen.");
     }
 
     @Override

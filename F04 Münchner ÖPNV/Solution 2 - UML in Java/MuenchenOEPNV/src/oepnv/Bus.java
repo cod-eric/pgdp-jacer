@@ -7,7 +7,7 @@ public class Bus extends Vehicle {
 
     @Override
     public void move() {
-        System.out.println("oepnv.Bus vrooms.");
+        System.out.println("Bus vrooms.");
     }
 
     @Override
@@ -21,6 +21,6 @@ public class Bus extends Vehicle {
     }
 
     public void lowerRightSide() {
-        System.out.println("oepnv.Bus lowers right side for passengers to enter.");
+        System.out.println("Bus lowers right side for passengers to enter.");
     }
 }

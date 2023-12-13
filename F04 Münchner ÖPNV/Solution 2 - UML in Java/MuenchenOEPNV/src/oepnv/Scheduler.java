@@ -1,6 +1,6 @@
 package oepnv;
 
-import oepnv.LineNumbers.BusLineNumber;
+import oepnv.linenumbers.BusLineNumber;
 
 import java.util.Arrays;
 import java.util.Random;

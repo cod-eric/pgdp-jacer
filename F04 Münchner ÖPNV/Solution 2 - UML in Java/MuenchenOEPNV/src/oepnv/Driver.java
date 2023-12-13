@@ -3,11 +3,11 @@ package oepnv;
 import java.util.Objects;
 
 public class Driver extends OEPNVEmployee implements MakeAnnouncements {
-    private DriverLicense[] driverLicenses;
+    private DriversLicense[] driversLicenses;
 
-    public Driver(String name, int age, int salary, DriverLicense[] driverLicenses) {
+    public Driver(String name, int age, int salary, DriversLicense[] driversLicenses) {
         super(name, age, salary);
-        this.driverLicenses = driverLicenses;
+        this.driversLicenses = driversLicenses;
     }
 
     public void drive(Vehicle v) {
@@ -24,9 +24,11 @@ public class Driver extends OEPNVEmployee implements MakeAnnouncements {
         System.out.println("Attention U-Bahn passengers: " + message);
     }
 
-    public boolean isLicensedFor(LineNumber l) {
-        for (DriverLicense dl : driverLicenses) {
-            if (Objects.equals(dl.toString().split("L")[0], l.toString().split("L")[0])) {
+    public boolean isLicensedFor(Vehicle v) {
+        for (DriversLicense dl : driversLicenses) {
+            if (dl == DriversLicense.BUS_LICENSE && v instanceof Bus
+            || dl == DriversLicense.U_BAHN_LICENSE && v instanceof UBahn
+            || dl == DriversLicense.S_BAHN_LICENSE && v instanceof SBahn) {
                 return true;
             }
         }
