@@ -3,7 +3,7 @@ package oepnv;
 public class SwitchSegment extends TrackSegment {
     private boolean isSwitched;
 
-    public SwitchSegment(LineNumber trackType, double width, double length, double[] coordinates) {
+    public SwitchSegment(Vehicle trackType, double width, double length, double[] coordinates) {
         super(trackType, width, length, coordinates);
     }
 

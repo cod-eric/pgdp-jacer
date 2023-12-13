@@ -1,8 +1,8 @@
 package oepnv;
 
 public class Bus extends Vehicle {
-    public Bus(LineNumber lineNumber) {
-        super(lineNumber);
+    public Bus(Line line) {
+        super(line);
     }
 
     @Override

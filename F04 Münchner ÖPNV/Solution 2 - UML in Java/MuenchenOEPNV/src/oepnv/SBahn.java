@@ -5,8 +5,8 @@ import java.util.Objects;
 public class SBahn extends Vehicle {
     public String model;
 
-    public SBahn(LineNumber lineNumber, String model) {
-        super(lineNumber);
+    public SBahn(Line line, String model) {
+        super(line);
         this.model = model;
     }
 
@@ -26,7 +26,7 @@ public class SBahn extends Vehicle {
     }
 
     public SBahn[] splitTrains() {
-        return new SBahn[]{new SBahn(super.lineNumber, model), new SBahn(super.lineNumber, model)};
+        return new SBahn[]{new SBahn(super.getLine(), model), new SBahn(super.getLine(), model)};
     }
 
     public boolean connectTrains(SBahn otherSBahn) {
@@ -34,7 +34,7 @@ public class SBahn extends Vehicle {
             System.out.println("To connect SBahns, there need to be exactly two.");
             return false;
         }
-        if (this.lineNumber != otherSBahn.lineNumber || !Objects.equals(this.model, otherSBahn.model)) {
+        if (this.getLine().lineNumber != otherSBahn.getLine().lineNumber || !Objects.equals(this.model, otherSBahn.model)) {
             System.out.println("SBahns need to be on the same line and have the same model to connect.");
             return false;
         }

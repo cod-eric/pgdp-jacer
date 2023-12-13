@@ -16,6 +16,7 @@ Diese Aufgabe dient der Wiederholung folgender Konzepte:
 - Enums
 - Text zu UML
 - UML zu Code
+- Graphen
 
 
 
@@ -39,7 +40,7 @@ Ziel dieser Aufgabe ist es, Vererbung und UML-Diagramme zu wiederholen. Insgesam
 
 
 
-Grundlegend ist der Münchner Nahverkehr in unserer Miniwelt in vier Kategorien unterteilt: Menschen, Linien mit Fahrzeugen, Haltestellen und Straßen/Schienen.
+Grundlegend ist der Münchner Nahverkehr in unserer Miniwelt in drei Kategorien unterteilt: Menschen, Linien mit Fahrzeugen und Haltestellen sowie Straßen/Schienen.
 
 ### Human
 
@@ -83,13 +84,15 @@ Dieses Interface gibt die Methode `announce(String)` vor, welche der Fähigkeit,
 
 ### Line
 
-Diese Klasse speichert Informationen für eine bestimmte Linie (z.B. für alle U6-U-Bahnen oder alle X660-Busse). Dabei kann jede Unterklasse im selben Package auf die gespeicherte `LineNumber`, sowie die Ziel-`Station` zugreifen.
+Diese Klasse speichert Informationen für eine bestimmte Linie (z.B. für alle U6-U-Bahnen oder alle X660-Busse) so, dass Fahrzeuge, die sich je eine Linie speichern, auf alle Attribute (Start- und Zielstation sowie `LineNumber`) zugreifen können.
 
-Zudem speichert eine `Line` alle `Station`en in der Reihenfolge, in der sie auf der Linie liegen (bereits vorgegeben). Eine Linie kann nie ohne Fahrzeug existieren.
+Zudem speichert eine `Line` alle `Station`en in der Reihenfolge, in der sie auf der Linie liegen (bereits vorgegeben). Dafür wird die bereits implementierte Methode `initStations()` verwendet, die auf den Objektattributen arbeitet und eine `List<Station>` zurückgibt.
 
-#### Vehicle
+Eine Linie kann nie ohne Fahrzeug existieren.
 
-Um den ÖPNV betreiben zu können, gibt es Fahrzeuge. Besonders wichtig ist natürlich, dass sich Fahrzeuge verspäten können – deshalb implementiert Vehicle `Delayable`. Jedes Fahrzeug, egal ob Bus, U- oder S-Bahn, speichert die eigene Anzahl an Rädern möglichst platzsparend (dabei haben Busse 6 Räder, S-Bahnen 28 und U-Bahnen 16). Für Wartungsarbeiten ist zudem hinterlegt, aus welchem Jahr ein Fahrzeug stammt (dafür kannst du den in Java-Utils gegebenen Typen `Date` verwenden – beim Erstellen eines neuen `Date`s enthält dieses automatisch das aktuelle Datum). Außerdem hat jedes Fahrzeug einen `Driver` und speichert die aktuellen Fahrzeuge. Bedenke dabei, dass die Anzahl an Fahrgästen sehr stark variieren kann und Fahrgäste an beliebigen Stationen ein- und aussteigen können (und dies auch im Code können).
+### Vehicle
+
+Um den ÖPNV betreiben zu können, gibt es Fahrzeuge. Besonders wichtig ist natürlich, dass sich Fahrzeuge verspäten können – deshalb implementiert Vehicle `Delayable`. Jedes Fahrzeug, egal ob Bus, U- oder S-Bahn, speichert die eigene Anzahl an Rädern möglichst platzsparend (dabei haben Busse 6 Räder, S-Bahnen 28 und U-Bahnen 16), sowie die Linie, zu der es gehört. Für Wartungsarbeiten ist zudem hinterlegt, aus welchem Jahr ein Fahrzeug stammt (dafür kannst du den in Java-Utils gegebenen Typen `Date` verwenden – beim Erstellen eines neuen `Date`s enthält dieses automatisch das aktuelle Datum). Außerdem hat jedes Fahrzeug einen `Driver` und speichert die aktuellen Fahrgäste. Bedenke dabei, dass die Anzahl an Fahrgästen sehr stark variieren kann und Fahrgäste an beliebigen Stationen ein- und aussteigen können (und dies auch im Code können).
 
 `Vehicle` gibt außerdem die Methode `move()` vor – wie genau sich ein Fahrzeug bewegt ist allerdings davon abhängig, ob es ein Bus, eine S- oder eine U-Bahn ist. Zudem kann ein Fahrzeug die Türen öffnen und schließen – auch dies ist vom konkreten Fahrzeugtypen abhängig.
 
@@ -115,9 +118,9 @@ Busse haben die Fähigkeit, die rechte Seite (mit den Türen) abzusenken, um den
 
 Liniennummern dienen der Zuordnung von Fahrzeugen und Fahrgästen der Orientierung.
 
-Um die Klassenstruktur übersichtlicher zu gestalten, liegen alle Unterklassen von `LineNumber` (nicht aber `LineNumber`!) in einem separaten Package in `oepnv` (bereits vorgegeben) namens `linenumbers`. Dieses kannst du durch einen Rechtsklick auf `oepnv` und dann `New > Package` erstellen.
+Um die Klassenstruktur übersichtlicher zu gestalten, liegen alle Unterklassen von `LineNumber` (nicht aber `LineNumber`!) in einem separaten Package in `oepnv` (bereits vorgegeben) namens `linenumbers` (noch nicht vorgegeben). Dieses kannst du durch einen Rechtsklick auf `oepnv` und dann `New > Package` erstellen.
 
-Das Interface `LineNumber` hat dabei keine besonderen Eigenschaften, ermöglicht allerdings die Generalisierung der Bus-, U- und S-Bahn-Liniennummern (sodass in `Vehicle` eine `Line` als Datentyp ausreicht, anstatt für alle 3 Untertypen eine Variable anzulegen, die möglicherweise belegt wird).
+Das Interface `LineNumber` hat dabei keine besonderen Eigenschaften, ermöglicht allerdings die Generalisierung der Bus-, U- und S-Bahn-Liniennummern (sodass in `Line` eine `LineNumber` als Datentyp ausreicht, anstatt für alle 3 Untertypen eine Variable anzulegen, die möglicherweise belegt wird).
 
 ​	*Vergleich:*
 
@@ -218,28 +221,13 @@ Weichen sind `TrackSegments`, die zudem speichern, ob sie aktuell geschalten sin
 
 ### Station
 
-Das Interface `Station` dient – wie bei `LineNumber` – der Generalisierung der genauen Stationen der verschiedenen Linien. Die Interfaces und Enums, die `Station` implementieren (nicht aber `Station` selbst!) liegen in einem eigenen Package `stations` (bereits vorgegeben). Zudem gibt `Station` zwei Methoden (mit `default`-Implementierung!) vor:
+Das Enum `Station` speichert alle in unseren Miniwelt möglichen Haltestellen (bereits vorgegeben).
 
-- `equals(Station): boolean`: Diese Methode vergleicht, ob die aktuelle und gegebene Station gleich ist. Da es verschiedene Enums je Linie gibt, ist z.B. `S1.FELMOCHING` nicht identisch mit `U2.FELDMOCHING`. Um dennoch Umsteigemöglichkeiten ausgeben zu können, soll diese Methode ermitteln, ob zwei Stationen gleich heißen, auch wenn sie aus verschiedenen Enums kommen.
-    *Tipp: Überlege, wie man Enums in Strings umwandeln kann.*
-- `isIn(Station): boolean`: Die Pinguine in unserer Miniwelt sind durchaus sportlich; so ist es für sie kein Problem, ein wenig durch den Ort laufen zu müssen, um ihren Umstieg zu erreichen. Diese Methode vergleicht, ob die aktuelle Station und die übergebene im selben Ort liegen. Dies wäre z.B. bei `GARCHING` und `GARCHING_HOCHBRUECK` der Fall, aber auch bei `GARCHING_FORSCHUNGSZENTRUM` und `GARCHING_HOCHBRUECK`. Beachte auch hier, dass die Station-Konstanten aus verschiedenen Enums kommen können.
-    *Tipp: mit `.split("abc")` kann man einen String an allen Stellen “abc” teilen. Zurückgegeben wird ein Array mit allen Einzelteilen. “abc” wird dabei entfernt. Beispiel: `“hallo welt”.split("l")` gibt `["ha", "", "o we", "t"]` zurück.*
+Zudem gibt `Station` eine Methode (mit `default`-Implementierung!) vor (noch zu implementieren):
 
+- `isIn(Station): boolean`: Die Pinguine in unserer Miniwelt sind durchaus sportlich; so ist es für sie kein Problem, ein wenig durch den Ort laufen zu müssen, um ihren Umstieg zu erreichen. Diese Methode vergleicht, ob die aktuelle Station und die übergebene im selben Ort liegen. Dies wäre z.B. bei `GARCHING` und `GARCHING_HOCHBRUECK` der Fall, aber auch bei `GARCHING_FORSCHUNGSZENTRUM` und `GARCHING_HOCHBRUECK`.
 
-
-⚠️ <u>Hinweis</u>: Ab hier sind die restlichen Interfaces und Enums bereits im Template-Code vorgegeben – der Lerneffekt beim Abschreiben von ~100 Stationsnamen ist vernachlässigbar gering. Auch im UML-Diagramm musst du nicht alle Stationsnamen aufschreiben – es genügt, die Enums ohne Konstanten zu erstellen.
-
-#### BusStation
-
-Generalisiert die Haltestellen der Buslinien `B292Station`, `B230Station`, `B690Station`, `X201Station`, `X660Station` und wird von diesen implementiert. Implementiert `Station`.
-
-#### UBahnStation
-
-Generalisiert die Haltestellen der U-Bahn-Linien `U2`, `U3`, `U6` und wird von diesen implementiert. Implementiert `Station`.
-
-#### SBahnStation
-
-Generalisiert die Haltestellen der S-Bahn-Linien `S1`, `S8` und wird von diesen implementiert. Implementiert `Station`.
+    *<u>Tipp</u>: mit `.split("abc")` kann man einen String an allen Stellen “abc” teilen. Zurückgegeben wird ein Array mit allen Einzelteilen. “abc” wird dabei entfernt. Beispiel: `“hallo welt”.split("l")` gibt `["ha", "", "o we", "t"]` zurück.*
 
 
 
@@ -249,9 +237,7 @@ Generalisiert die Haltestellen der S-Bahn-Linien `S1`, `S8` und wird von diesen 
 
 Wandle die obige Beschreibung in ein UML-Diagramm um. Dafür kannst du zum Beispiel [Apollon](https://apollon.ase.in.tum.de) verwenden. Getter, Setter und Konstruktoren musst du nicht in dein UML-Diagramm schreiben, kannst es aber natürlich trotzdem tun.
 
-<u>Hinweis</u>: Das Package `oepnv` musst du nicht für jede Klasse angeben. Die Unter-Packages allerdings schon!
-
-<u>Hinweis</u>: Die Enums `BusStation`, `UBahnStation` und `SBahnStation` solltest du in deinem UML-Diagramm angeben. Ob du die Enums darunter, also `X660Station`, `U2Station`, etc. erstellst, ist dir überlassen – der Lerneffekt ist nicht sonderlich hoch, im Lösungsvorschlag gibt es sie trotzdem.
+<u>Hinweis</u>: Das Package `oepnv` musst du nicht für jede Klasse angeben. Unter-Packages allerdings schon!
 
 
 
@@ -265,9 +251,15 @@ Erstelle anhand deines UML-Diagramms nun die entsprechenden Java-Klassen und imp
 
 Achte darauf, Konstruktoren, Getter und Setter zu ergänzen, wo dies sinnvoll ist.
 
-<u>Hinweis</u>: Das Package `stations` ist bereits mit den dazugehörigen Interfaces und Enums vorgegeben. Du musst an diesen nichts ändern.
-
 <u>Hinweis</u>: Manche Klassen, Enums und Interfaces existieren im Template bereits – sind aber, wenn nicht anders angegeben, unvollständig/leer. Sie dienen nur dazu, dass IntelliJ nicht direkt beim Öffnen des Projekts sämtlichen Code rot unterstreicht.
+
+
+
+### 3. Verbindung finden
+
+Diese Teilaufgabe beschäftigt sich nun damit, anhand von Graphen eine Verbindung für die Pinguine zu ermitteln.
+
+
 
 <div style="page-break-after: always; break-after: page;"></div>
 

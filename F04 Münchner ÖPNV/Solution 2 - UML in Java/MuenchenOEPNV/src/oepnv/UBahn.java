@@ -3,8 +3,8 @@ package oepnv;
 public class UBahn extends Vehicle {
     public String model;
 
-    public UBahn(LineNumber lineNumber, String model) {
-        super(lineNumber);
+    public UBahn(Line line, String model) {
+        super(line);
         this.model = model;
     }
 
@@ -15,7 +15,7 @@ public class UBahn extends Vehicle {
 
     @Override
     public void openDoors() {
-        System.out.println(super.lineNumber + ", bitte einsteigen.");
+        System.out.println(super.getLine().lineNumber + ", bitte einsteigen.");
     }
 
     @Override

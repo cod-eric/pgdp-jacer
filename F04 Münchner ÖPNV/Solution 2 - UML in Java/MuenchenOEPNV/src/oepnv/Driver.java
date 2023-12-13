@@ -11,7 +11,7 @@ public class Driver extends OEPNVEmployee implements MakeAnnouncements {
     }
 
     public void drive(Vehicle v) {
-        System.out.println(name + " is now driving a " + v.lineNumber);
+        System.out.println(name + " is now driving a " + v.getLine().lineNumber);
     }
 
     @Override
