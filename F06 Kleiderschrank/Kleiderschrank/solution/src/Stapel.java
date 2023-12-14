@@ -1,7 +1,6 @@
 public class Stapel <T> {
 
     Stapelelement<T> first;
-
     /**
      * pushes element on top of the stack
      * @param element element to push

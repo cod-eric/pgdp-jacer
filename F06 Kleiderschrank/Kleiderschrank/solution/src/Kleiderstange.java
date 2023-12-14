@@ -1,5 +1,6 @@
 public class Kleiderstange<T> {
 
+
     Kleiderhaken<T> erstes;
 
     /**
