@@ -1,3 +1,4 @@
+import network.Graph.*;
 import oepnv.*;
 import oepnv.linenumbers.BusLineNumber;
 import oepnv.linenumbers.SBahnLineNumber;
@@ -45,7 +46,7 @@ public class Main {
         for (Triple<LineNumber, Station, Station> route : knownConnections) {
             // check one direction
             boolean foundFromStation = false;
-            for (Station station : Scheduler.getStations(route.a, route.b, route.c)) {
+            for (Station station : Scheduler.getStations(route.getA(), route.getB(), route.getC())) {
                 if (station == current) {
                     foundFromStation = true;
                 }
@@ -54,14 +55,14 @@ public class Main {
                 }
                 List<Station> ret = findConnectionsWithoutWalkingHelper(station, to, currentPath, currentPaths, seen);
                 if (ret != null) {
-                    currentPaths.add(route.a);
+                    currentPaths.add(route.getA());
                 }
                 currentPath.remove(station);
             }
 
             // check reverse direction
             foundFromStation = false;
-            for (Station station : Scheduler.getStations(route.a, route.c, route.b)) {
+            for (Station station : Scheduler.getStations(route.getA(), route.getC(), route.getB())) {
                 if (station == current) {
                     foundFromStation = true;
                 }
@@ -70,7 +71,7 @@ public class Main {
                 }
                 List<Station> ret = findConnectionsWithoutWalkingHelper(station, to, currentPath, currentPaths, seen);
                 if (ret != null) {
-                    currentPaths.add(route.a);
+                    currentPaths.add(route.getA());
                 }
                 currentPath.remove(station);
             }
@@ -81,8 +82,8 @@ public class Main {
     private static Set<LineNumber> oepnvAtStation(Station s) {
         Set<LineNumber> connectionsAt = new HashSet<>();
         for (Triple<LineNumber, Station, Station> t : knownConnections) {
-            if (Scheduler.getStations(t.a, t.b, t.c).contains(s)) {
-                connectionsAt.add(t.a);
+            if (Scheduler.getStations(t.getA(), t.getB(), t.getC()).contains(s)) {
+                connectionsAt.add(t.getA());
             }
         }
         return connectionsAt;
@@ -101,29 +102,5 @@ public class Main {
         sb.setLength(sb.length()-4);
         sb.append("\n");
         return sb.toString();
-    }
-
-    private static class Triple<A, B, C> {
-        private final A a;
-        private final B b;
-        private final C c;
-
-        public Triple(A a, B b, C c) {
-            this.a = a;
-            this.b = b;
-            this.c = c;
-        }
-
-        public A getA() {
-            return a;
-        }
-
-        public B getB() {
-            return b;
-        }
-
-        public C getC() {
-            return c;
-        }
     }
 }
