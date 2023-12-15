@@ -1,6 +1,5 @@
 public class Kleiderstange<T> {
 
-
     Kleiderhaken<T> erstes;
 
     /**
@@ -282,11 +281,13 @@ public class Kleiderstange<T> {
         }
     }
 
+    /**
+     * Example class Socke to add to the Kleiderstange
+     * each object has a counterpart of the same class
+     */
     public static class Socke {
 
         private Socke counterpart;
-
-
 
         public Socke getCounterpart() {
             return counterpart;

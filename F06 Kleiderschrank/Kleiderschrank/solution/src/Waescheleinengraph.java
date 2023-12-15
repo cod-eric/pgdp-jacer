@@ -3,33 +3,70 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 public class Waescheleinengraph<T> {
-    private Map<T, List<T>> nodes;
+    private Map<T, List<T>> vertices;
 
     public Waescheleinengraph(){
-        this.nodes = new HashMap<>();
+        this.vertices = new HashMap<>();
     }
 
-    public void addNode(T newNode){
-        if(!nodes.containsKey(newNode))
-            nodes.put(newNode, new ArrayList<>());
+    /**
+     * adds vertex to the map
+     * @param newVertex new key
+     */
+    public void addVertex(T newVertex){
+        if(!vertices.containsKey(newVertex))
+            vertices.put(newVertex, new ArrayList<>());
     }
 
+    /**
+     * removes vertex
+     * @param vertex key to remove
+     */
+    public void removeVertex(T vertex){
+        if(vertices.containsKey(vertex))
+            vertices.remove(vertex);
+    }
+
+    /**
+     * adds an edge
+     * @param from node of the edges starting point
+     * @param to node of the edges end point
+     */
     public void addEdge(T from, T to){
-        if(!nodes.containsKey(from)){
-            this.addNode(from);
+        if(!vertices.containsKey(from)){
+            this.addVertex(from);
         }
 
-        List<T> edges = nodes.get(from);
+        List<T> edges = vertices.get(from);
         if(!edges.contains(to)) edges.add(to);
     }
 
-    public boolean existsEdge(T from, T to){
-        if(!nodes.containsKey(from)) return false;
-        else return nodes.get(from).contains(to);
+    /**
+     * removes edge
+     * @param from starting point of edge
+     * @param to end point of edge
+     */
+    public void removeEdge(T from, T to){
+        if(vertices.containsKey(from)){
+            List<T> edges = vertices.get(from);
+            if(edges.contains(to)){
+                vertices.remove(to);
+            }
+
+        }
     }
 
-    public boolean kreisfrei(){
-        return false;
+    /**
+     * checks if edge is present
+     * @param from starting point of edge
+     * @param to edges end point
+     * @return if edge is contained
+     */
+    public boolean existsEdge(T from, T to){
+        if(!vertices.containsKey(from)) return false;
+        else return vertices.get(from).contains(to);
     }
+
+
 
 }

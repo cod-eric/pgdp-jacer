@@ -2,7 +2,6 @@ public class Kleiderstapel<T> {
     private Stapel<T> first;
     private Stapel<T> second;
 
-
     public Kleiderstapel(){
         first = new Stapel<>();
         second = new Stapel<>();
