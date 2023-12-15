@@ -241,9 +241,7 @@ Wandle die obige Beschreibung in ein UML-Diagramm um. Dafür kannst du zum Beisp
 
 
 
-#### Fragen
-
-1. In S- und U-Bahn wird das Modell `public` gespeichert. Welche Vor- und Nachteile kann das haben?
+In S- und U-Bahn wird das Modell `public` gespeichert. Welche Vor- und Nachteile kann das haben?
 
 ### 2. UML zu Code
 
@@ -255,9 +253,15 @@ Achte darauf, Konstruktoren, Getter und Setter zu ergänzen, wo dies sinnvoll is
 
 
 
-### 3. Verbindung finden
+### 3. Expansion
 
-Diese Teilaufgabe beschäftigt sich nun damit, anhand von Graphen eine Verbindung für die Pinguine zu ermitteln.
+Aufgrund der näherrückenden ÜPA haben es die Tutoruine leider nicht mehr geschafft, einen sinnvollen Anwendungszweck für die modellierte Miniwelt zu entwerfen (dementsprechend gibt es hierfür keine Lösungen). Dennoch ist es eine gute Übung, wenn ihr hier kreativ werdet und selbst noch Erweiterungen bzw. sinnvolle Funktionalitäten ergänzt. Hier einige Ideen, was denkbar wäre, mit zugehöriger Schwierigkeitsstufe:
+
+- Modelliere einen Tagesablauf, wie er im Münchner Nahverkehr vorkommen könnte (effektiv: teste deinen Code durch einige Funktionsaufrufe). *(einfach)*
+- Füge weitere Teile des ÖPNVs in München hinzu (z.B. Tram, Techniker, …). Passe ggf. die Vererbungen und Interfaces an. *(einfach)*
+- Anstatt bei `isIn()` anhand der Strings auf die Zugehörigkeit einer Station in einem Ort zu prüfen, kann man für jede "Hauptstation" (z.B. `GARCHING`) alle "Unterstationen" (`GRACHING_HOCHBRUECK`, `GARCHING_SONNENSTRASSE`, `GARCHING_FORSCHUNGSZENTRUM`, …) in einer durch die Hauptstation identifizierten Liste speichern und anhand dieser überprüfen, ob zwei Stationen in laufbarer Distanz liegen. *(medium)*
+- Gegeben zwei Stationen, finde eine/alle mögliche(n) Verbindung(en). *(schwer)*
+  Tipp: Dafür kannst du dich mit Graphen, Tiefen- und Breitensuche beschäftigen (nur bedingt Teil von PGdP).
 
 
 
@@ -269,10 +273,14 @@ Siehe `Solution 1 - UML Diagram` bzw. `Solution 2 - UML in Java` für die entspr
 
 
 
-Lösungen zu Fragen:
+*Antwort zu "In S- und U-Bahn wird das Modell `public` gespeichert. Welche Vor- und Nachteile kann das haben?":*
 
-1. Durch `public` kann das Attribut von außen gelesen, als auch überschrieben werden. Man benötigt entsprechend keine Getter/Setter – allerdings könnten die Informatik-Nerds das Modell einer S-Bahn auch einfach verändern, ohne, dass diese tatsächlich umgebaut wird.
+Durch `public` kann das Attribut von außen gelesen, als auch überschrieben werden. Man benötigt entsprechend keine Getter/Setter – allerdings könnten die Informatik-Nerds das Modell einer S-Bahn auch einfach verändern, ohne, dass diese tatsächlich umgebaut wird.
 
 
 
 ## 🗃️ Anhang
+
+### MVG-API
+
+Die API als Schnittstelle ist leider noch im Aufbau (es gibt wohl einige Umwege über Python, aber das ist sehr umständlich). Allerdings gibt es [hier](https://www.mvv-muenchen.de/fahrplanauskunft/fuer-entwickler/opendata/index.html) Datensätze zu Fahrtzeiten und -plänen des MVG — falls ihr diese parsen und in eurer Miniwelt speichern wollt: fühlt euch frei.

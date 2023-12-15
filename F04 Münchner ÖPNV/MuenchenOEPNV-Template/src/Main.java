@@ -1,12 +1,12 @@
-import oepnv.*;
-import oepnv.linenumbers.BusLineNumber;
+import oepnv.Station;
+//TODO uncomment this once you have implemented LineNumber and its subclasses
+/*import oepnv.linenumbers.BusLineNumber;
 import oepnv.linenumbers.SBahnLineNumber;
-import oepnv.linenumbers.UBahnLineNumber;
-
-import java.util.*;
+import oepnv.linenumbers.UBahnLineNumber;*/
 
 public class Main {
-    static Triple<LineNumber, Station, Station>[] knownConnections = new Triple[]{
+    //TODO uncomment this once you have implemented LineNumber and its subclasses
+    /*static Triple<LineNumber, Station, Station>[] knownConnections = new Triple[]{
             new Triple<>(SBahnLineNumber.S1, Station.LEUCHTENBERGRING, Station.FREISING),
             new Triple<>(SBahnLineNumber.S1, Station.LEUCHTENBERGRING, Station.FLUGHAFEN_MUENCHEN),
             new Triple<>(SBahnLineNumber.S1, Station.HERRSCHING, Station.FLUGHAFEN_MUENCHEN),
@@ -18,7 +18,7 @@ public class Main {
             new Triple<>(BusLineNumber.B690, Station.GARCHING_FORSCHUNGSZENTRUM, Station.ECHING_OST),
             new Triple<>(BusLineNumber.X201, Station.GARCHING_FORSCHUNGSZENTRUM, Station.DACHAU_BAHNHOF),
             new Triple<>(BusLineNumber.X660, Station.GARCHING_FORSCHUNGSZENTRUM, Station.FREISING_WEIHENSTEPHAN)
-    };
+    };*/
 
     public static void main(String[] args) {
         //TODO hier könnt ihr eure Miniwelt testen
