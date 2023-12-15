@@ -1,17 +1,17 @@
-public class Stapel <T> {
+public class Stapel<T> {
 
-    Stapelelement<T> first;
+    StapelElement<T> first;
 
     /**
      * pushes element on top of the stack
+     *
      * @param element element to push
      */
-    public void push(T element){
-        Stapelelement<T> newElement = new Stapelelement<>(element);
-        if(first==null){
+    public void push(T element) {
+        StapelElement<T> newElement = new StapelElement<>(element);
+        if (first == null) {
             first = newElement;
-        }
-        else {
+        } else {
             newElement.next = first;
             first = newElement;
         }
@@ -19,13 +19,13 @@ public class Stapel <T> {
 
     /**
      * removes topmost element of the stack
+     *
      * @return value of the topmost elment, null for empty stack
      */
-    public T pop(){
-        if(first == null){
+    public T pop() {
+        if (first == null) {
             return null;
-        }
-        else{
+        } else {
             T value = first.value;
             first = first.next;
             return value;
@@ -34,15 +34,16 @@ public class Stapel <T> {
 
     /**
      * reverses the given Stack
+     *
      * @param stapel Stack to revers
+     * @param <S>    type of Stackelements
      * @return reversed Stack
-     * @param <S> type of Stackelements
      */
-    public static <S> Stapel<S> reverse(Stapel<S> stapel){
+    public static <S> Stapel<S> reverse(Stapel<S> stapel) {
         Stapel<S> reversed = new Stapel<>();
         S element = stapel.pop();
 
-        while(element !=null){
+        while (element != null) {
             reversed.push(element);
             element = stapel.pop();
         }
@@ -50,12 +51,11 @@ public class Stapel <T> {
     }
 
 
-
-    private static class Stapelelement<T>{
+    private static class StapelElement<T> {
         private T value;
-        private Stapelelement<T> next;
+        private StapelElement<T> next;
 
-        public Stapelelement(T value){
+        public StapelElement(T value) {
             this.value = value;
         }
 

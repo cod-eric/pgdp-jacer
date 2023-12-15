@@ -243,9 +243,11 @@ Wandle die obige Beschreibung in ein UML-Diagramm um. Dafür kannst du zum Beisp
 
 In S- und U-Bahn wird das Modell `public` gespeichert. Welche Vor- und Nachteile kann das haben?
 
+
+
 ### 2. UML zu Code
 
-Erstelle anhand deines UML-Diagramms nun die entsprechenden Java-Klassen und implementiere diese korrekt. Stelle sicher, dass alle Klassen im richtigen Package liegen – sollte die Zeile `package xx.yy;` nicht automatisch von IntelliJ eingefügt werden, musst du sie selbst dazuschreiben.
+Erstelle anhand deines UML-Diagramms nun die entsprechenden Java-Klassen und implementiere diese korrekt in `MuenchenOEPNV-Template`. Stelle sicher, dass alle Klassen im richtigen Package liegen – sollte die Zeile `package xx.yy;` nicht automatisch von IntelliJ eingefügt werden, musst du sie selbst dazuschreiben.
 
 Achte darauf, Konstruktoren, Getter und Setter zu ergänzen, wo dies sinnvoll ist.
 
