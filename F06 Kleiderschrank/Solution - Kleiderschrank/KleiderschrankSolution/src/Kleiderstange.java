@@ -71,9 +71,15 @@ public class Kleiderstange<T> {
         if (erstes == null) return;
 
         Kleiderhaken<T> current = erstes;
+        while (current.inhalt instanceof Socke){
+            current = current.naechstes;
+        }
         while (current.naechstes != null) {
-            if (current.naechstes.inhalt instanceof Socke) {
+            while (current.naechstes.inhalt instanceof Socke) {
                 current.naechstes = current.naechstes.naechstes;
+                if (current.naechstes == null) {
+                    return;
+                }
             }
             current = current.naechstes;
         }
